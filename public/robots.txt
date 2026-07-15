@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://camp-hikaku.example.com/sitemap.xml
