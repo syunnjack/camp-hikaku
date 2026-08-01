@@ -27,6 +27,7 @@ jobs:
         with:
           username: ${{ secrets.SSH_USERNAME }}
           server: ${{ secrets.SSH_HOST }}
+          port: 10022
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: './dist/*'
           remote_path: '/home/xs501620/camp-hikaku.jp/public_html/'
