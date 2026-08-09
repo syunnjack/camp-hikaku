@@ -47,10 +47,21 @@
         <p class="text-secondary small mb-2">エリア: {{ $spot->area }}</p>
       @endif
       @if(!empty($spot->tags))
-        <div class="mb-4">
+        <div class="mb-3">
           @foreach($spot->tags as $tag)
             <span class="badge bg-light text-dark border">{{ $tagLabels[$tag] ?? $tag }}</span>
           @endforeach
+        </div>
+      @endif
+
+      @if($spot->booking_url)
+        @php
+          $providerLabels = ['rakuten' => '楽天トラベルで予約', 'ikyu' => '一休.comで詳細を見る'];
+        @endphp
+        <div class="mb-3">
+          <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer" class="btn btn-outline-danger btn-sm">
+            {{ $providerLabels[$spot->booking_provider] ?? '予約サイトで見る' }}
+          </a>
         </div>
       @endif
 

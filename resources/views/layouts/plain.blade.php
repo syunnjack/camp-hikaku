@@ -58,6 +58,17 @@
 
   @yield('content')
 
+  @if(config('services.valuecommerce.ikyu_sid') && config('services.valuecommerce.ikyu_pid'))
+  <footer class="container my-4 py-3 border-top text-center">
+    <a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid={{ config('services.valuecommerce.ikyu_sid') }}&pid={{ config('services.valuecommerce.ikyu_pid') }}"
+       target="_blank" rel="nofollow noopener noreferrer" class="text-decoration-none small text-muted">
+      高級宿・温泉旅館の予約は「一休.com」で探す &raquo;
+    </a>
+    <img src="https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid={{ config('services.valuecommerce.ikyu_sid') }}&pid={{ config('services.valuecommerce.ikyu_pid') }}"
+         width="1" height="1" border="0" alt="" style="position:absolute;">
+  </footer>
+  @endif
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   @yield('scripts')
 </body>

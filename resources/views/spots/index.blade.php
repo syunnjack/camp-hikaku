@@ -87,7 +87,13 @@
                 @endforeach
               </div>
             @endif
-            <small class="text-muted">空き状況：{{ \App\Helpers\CongestionHelper::getText($spot->average_congestion) }}</small>
+            <small class="text-muted d-block mb-1">空き状況：{{ \App\Helpers\CongestionHelper::getText($spot->average_congestion) }}</small>
+            @if($spot->booking_url)
+              @php $providerLabels = ['rakuten' => '楽天トラベルで予約', 'ikyu' => '一休.comで見る']; @endphp
+              <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer" class="small">
+                {{ $providerLabels[$spot->booking_provider] ?? '予約サイトで見る' }} &raquo;
+              </a>
+            @endif
           </div>
         </div>
       </div>

@@ -12,6 +12,8 @@ class Spot extends Model
         'area',
         'category',
         'tags',
+        'booking_url',
+        'booking_provider',
         'lat',
         'lng',
         'congestion_reports',
