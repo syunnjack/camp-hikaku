@@ -18,6 +18,10 @@ class SpotController extends Controller
             $query->where('area', $request->input('area'));
         }
 
+        if ($request->filled('tag')) {
+            $query->whereJsonContains('tags', $request->input('tag'));
+        }
+
         $spots = $query->latest()->get();
         $areas = Spot::query()->whereNotNull('area')->distinct()->pluck('area');
 

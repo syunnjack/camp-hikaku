@@ -10,6 +10,8 @@ class Spot extends Model
         'name',
         'description',
         'area',
+        'category',
+        'tags',
         'lat',
         'lng',
         'congestion_reports',
@@ -21,6 +23,7 @@ class Spot extends Model
     {
         return [
             'congestion_reports' => 'array',
+            'tags' => 'array',
             'average_congestion' => 'float',
         ];
     }

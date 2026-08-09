@@ -35,9 +35,23 @@
   <div class="card shadow-sm">
     <div class="card-body p-4">
       <h1 class="h3 fw-bold mb-3">{{ $spot->name }}</h1>
+      @php
+        $tagLabels = ['family' => 'ファミリー', 'couple' => 'カップル', 'friends' => 'お友達', 'solo' => 'ソロキャンプ'];
+        $categoryLabels = ['campground' => 'キャンプ場', 'glamping' => 'グランピング'];
+      @endphp
+      @if($spot->category && isset($categoryLabels[$spot->category]))
+        <span class="badge bg-info text-dark mb-2">{{ $categoryLabels[$spot->category] }}</span>
+      @endif
       <p class="text-muted mb-2">{{ $spot->description }}</p>
       @if($spot->area)
-        <p class="text-secondary small mb-4">エリア: {{ $spot->area }}</p>
+        <p class="text-secondary small mb-2">エリア: {{ $spot->area }}</p>
+      @endif
+      @if(!empty($spot->tags))
+        <div class="mb-4">
+          @foreach($spot->tags as $tag)
+            <span class="badge bg-light text-dark border">{{ $tagLabels[$tag] ?? $tag }}</span>
+          @endforeach
+        </div>
       @endif
 
       <div class="mb-3">

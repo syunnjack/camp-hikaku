@@ -47,10 +47,25 @@
         @endforeach
       </select>
     </div>
+    <div class="col-md-4">
+      <label class="form-label">おすすめの人</label>
+      <select name="tag" class="form-select">
+        <option value="">すべて</option>
+        <option value="family" @selected(request('tag') == 'family')>ファミリー</option>
+        <option value="couple" @selected(request('tag') == 'couple')>カップル</option>
+        <option value="friends" @selected(request('tag') == 'friends')>お友達</option>
+        <option value="solo" @selected(request('tag') == 'solo')>ソロキャンプ</option>
+      </select>
+    </div>
     <div class="col-md-2 align-self-end">
       <button type="submit" class="btn btn-outline-primary w-100">絞り込む</button>
     </div>
   </form>
+
+  @php
+    $tagLabels = ['family' => 'ファミリー', 'couple' => 'カップル', 'friends' => 'お友達', 'solo' => 'ソロキャンプ'];
+    $categoryLabels = ['campground' => 'キャンプ場', 'glamping' => 'グランピング'];
+  @endphp
 
   <div class="row">
     @forelse($spots as $spot)
@@ -61,7 +76,17 @@
               <a href="{{ route('spots.show', $spot) }}" class="text-decoration-none">{{ $spot->name }}</a>
               <span class="badge bg-secondary float-end">{{ $spot->area ?? '未設定' }}</span>
             </h2>
+            @if($spot->category && isset($categoryLabels[$spot->category]))
+              <span class="badge bg-info text-dark mb-1">{{ $categoryLabels[$spot->category] }}</span>
+            @endif
             <p class="card-text text-muted small">{{ $spot->description }}</p>
+            @if(!empty($spot->tags))
+              <div class="mb-2">
+                @foreach($spot->tags as $tag)
+                  <span class="badge bg-light text-dark border">{{ $tagLabels[$tag] ?? $tag }}</span>
+                @endforeach
+              </div>
+            @endif
             <small class="text-muted">空き状況：{{ \App\Helpers\CongestionHelper::getText($spot->average_congestion) }}</small>
           </div>
         </div>
