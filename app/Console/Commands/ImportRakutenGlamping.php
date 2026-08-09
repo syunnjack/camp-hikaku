@@ -8,10 +8,27 @@ use Illuminate\Support\Facades\Http;
 
 /**
  * Imports real, bookable glamping properties from the Rakuten Travel
- * KeywordHotelSearch API (same endpoint/credential pattern already used in
- * this user's golf-search project) and wraps each one in a real Rakuten
- * affiliate link. Only inserts what the API actually returns — no invented
- * listings. Idempotent via firstOrCreate keyed on [name, area].
+ * KeywordHotelSearch API (same shared credential already used in this
+ * user's golf-search project) and uses the real Rakuten-generated
+ * affiliate link the API itself returns. Only inserts what the API
+ * actually returns — no invented listings. Idempotent via firstOrCreate
+ * keyed on [name, area].
+ *
+ * Two undocumented gotchas discovered while wiring this up (2026-08-10):
+ *  1. The API version moved from /20170426/ to /20260731/ in Rakuten's
+ *     May 2026 platform migration — the old version path now returns a
+ *     generic, misleading 503 "Authentication service error" instead of
+ *     a clear "endpoint retired" message.
+ *  2. Rakuten validates the Referer/Origin header against the exact
+ *     "Application URL" the credential was registered under
+ *     (golf-search.org), not the domain actually making the request —
+ *     using camp-hikaku.jp's own URL gets a 403
+ *     HTTP_REFERRER_NOT_ALLOWED. So this command deliberately sends
+ *     golf-search.org as the Referer/Origin even though it's importing
+ *     data for camp-hikaku.jp; that's correct, not a copy-paste bug.
+ *  3. latitude/longitude come back as JGD2000 arcseconds (e.g.
+ *     497156.36), not decimal degrees — divide by 3600 to get usable
+ *     decimal coordinates.
  */
 class ImportRakutenGlamping extends Command
 {
@@ -52,7 +69,7 @@ class ImportRakutenGlamping extends Command
             return self::FAILURE;
         }
 
-        $imported = 0;
+        $beforeCount = Spot::where('booking_provider', 'rakuten')->count();
         $skipped = 0;
         $seenHotelNos = [];
 
@@ -62,17 +79,17 @@ class ImportRakutenGlamping extends Command
             try {
                 $response = Http::timeout(8)
                     ->withHeaders([
-                        'Referer' => config('app.url'),
-                        'Origin' => config('app.url'),
+                        // Must match the credential's registered Application URL, not this app's own domain — see class docblock.
+                        'Referer' => 'https://golf-search.org/',
+                        'Origin' => 'https://golf-search.org',
                     ])
-                    ->get('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', [
+                    ->get('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20260731', [
                         'format' => 'json',
                         'applicationId' => $appId,
                         'accessKey' => $accessKey,
                         'affiliateId' => $affiliateId,
                         'keyword' => $keyword,
                         'hits' => 10,
-                        'responseType' => 'large',
                     ]);
             } catch (\Throwable $e) {
                 $this->warn("  request failed: {$e->getMessage()}");
@@ -111,22 +128,23 @@ class ImportRakutenGlamping extends Command
                     continue;
                 }
 
-                $lat = $info['latitude'] ?? null;
-                $lng = $info['longitude'] ?? null;
-                if ($lat === null || $lng === null) {
+                if (! isset($info['latitude'], $info['longitude'])) {
                     $skipped++;
 
                     continue;
                 }
+                // Rakuten returns lat/lng as JGD2000 arcseconds, not decimal degrees.
+                $lat = round($info['latitude'] / 3600, 7);
+                $lng = round($info['longitude'] / 3600, 7);
 
                 $descriptionSource = trim(($info['hotelSpecial'] ?? '') . ' ' . ($info['address1'] ?? '') . ($info['address2'] ?? ''));
                 $description = $info['hotelSpecial']
                     ? mb_substr(strip_tags($info['hotelSpecial']), 0, 200)
                     : ($info['address1'] . ($info['address2'] ?? '') . 'にある楽天トラベル掲載のグランピング施設。');
 
-                $bookingUrl = $affiliateId
-                    ? 'https://hb.afl.rakuten.co.jp/hgc/' . $affiliateId . '/?pc=' . urlencode($info['hotelInformationUrl']) . '&m=' . urlencode($info['hotelInformationUrl'])
-                    : $info['hotelInformationUrl'];
+                // hotelInformationUrl already comes back as a real hb.afl.rakuten.co.jp affiliate
+                // link when affiliateId is passed — no need to wrap it ourselves.
+                $bookingUrl = $info['hotelInformationUrl'];
 
                 $spot = Spot::firstOrCreate(
                     ['name' => $info['hotelName'], 'area' => $area],
@@ -141,14 +159,12 @@ class ImportRakutenGlamping extends Command
                     ]
                 );
 
-                if ($spot->wasRecentlyCreated) {
-                    $imported++;
-                }
             }
 
             usleep(600_000); // stay well under Rakuten's rate limit
         }
 
+        $imported = Spot::where('booking_provider', 'rakuten')->count() - $beforeCount;
         $this->info("Imported {$imported} new glamping spots via Rakuten Travel API (skipped {$skipped} incomplete entries).");
 
         return self::SUCCESS;
