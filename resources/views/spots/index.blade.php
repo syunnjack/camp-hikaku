@@ -35,6 +35,7 @@
     <h1 class="fw-bold h3">⛺ キャンプ場マップ</h1>
     <p class="text-muted">空いてるキャンプ場を見つける・誰でも投稿できる地図</p>
     <a href="{{ route('spots.create') }}" class="btn btn-danger shadow-sm px-4">➕ キャンプ場を投稿</a>
+    <a href="{{ route('areas.index') }}" class="btn btn-outline-secondary shadow-sm px-4">都道府県から探す</a>
   </div>
 
   <form method="GET" action="{{ route('spots.index') }}" class="row g-2 mb-4">
@@ -90,7 +91,8 @@
             <small class="text-muted d-block mb-1">空き状況：{{ \App\Helpers\CongestionHelper::getText($spot->average_congestion) }}</small>
             @if($spot->booking_url)
               @php $providerLabels = ['rakuten' => '楽天トラベルで予約', 'ikyu' => '一休.comで見る']; @endphp
-              <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer" class="small">
+              <span class="badge bg-secondary-subtle text-secondary-emphasis border">広告</span>
+              <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer sponsored" class="small">
                 {{ $providerLabels[$spot->booking_provider] ?? '予約サイトで見る' }} &raquo;
               </a>
             @endif

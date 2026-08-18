@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SpotController::class, 'index'])->name('spots.index');
 Route::get('/create', [SpotController::class, 'create'])->name('spots.create');
 Route::post('/spots', [SpotController::class, 'store'])->name('spots.store')->middleware('throttle:5,1');
+Route::get('/areas', [SpotController::class, 'areaIndex'])->name('areas.index');
+Route::get('/areas/{area}', [SpotController::class, 'areaShow'])->name('areas.show');
 Route::get('/spots/{spot}', [SpotController::class, 'show'])->name('spots.show');
 Route::post('/spots/{spot}/reviews', [ReviewController::class, 'store'])->name('spots.reviews.store')->middleware('throttle:10,1');
 Route::post('/spots/{spot}/like', [SpotController::class, 'like'])->name('spots.like')->middleware('throttle:30,1');

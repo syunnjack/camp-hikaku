@@ -65,7 +65,58 @@ class SpotController extends Controller
     {
         $spot->load(['reviews' => fn ($q) => $q->latest()]);
 
-        return view('spots.show', compact('spot'));
+        // 同じエリアの他のキャンプ場。個別ページから他ページへ行けるようにする
+        $nearbySpots = Spot::query()
+            ->where('area', $spot->area)
+            ->whereNotNull('area')
+            ->where('id', '!=', $spot->id)
+            ->orderByDesc('likes_count')
+            ->limit(8)
+            ->get();
+
+        return view('spots.show', compact('spot', 'nearbySpots'));
+    }
+
+    /**
+     * 都道府県ごとの一覧ページ。
+     *
+     * これまで入口はトップの地図と個別ページだけで、「北海道 キャンプ場」の
+     * ような地域名での検索に応えるページが無かった。エリアごとにまとめて
+     * 見られるページを用意する。
+     */
+    public function areaIndex()
+    {
+        $areas = Spot::query()
+            ->whereNotNull('area')
+            ->selectRaw('area, count(*) as spots_count')
+            ->groupBy('area')
+            ->orderByDesc('spots_count')
+            ->get();
+
+        $total = Spot::query()->whereNotNull('area')->count();
+
+        return view('spots.areas', compact('areas', 'total'));
+    }
+
+    public function areaShow(string $area)
+    {
+        $spots = Spot::query()
+            ->where('area', $area)
+            ->orderByDesc('likes_count')
+            ->orderBy('name')
+            ->get();
+
+        abort_if($spots->isEmpty(), 404);
+
+        $otherAreas = Spot::query()
+            ->whereNotNull('area')
+            ->where('area', '!=', $area)
+            ->selectRaw('area, count(*) as spots_count')
+            ->groupBy('area')
+            ->orderByDesc('spots_count')
+            ->get();
+
+        return view('spots.area', compact('area', 'spots', 'otherAreas'));
     }
 
     public function reportCongestion(Request $request, Spot $spot)
@@ -132,7 +183,8 @@ class SpotController extends Controller
     public function sitemap()
     {
         $spots = Spot::select('id', 'updated_at')->get();
-        $xml = view('sitemap', compact('spots'))->render();
+        $areas = Spot::query()->whereNotNull('area')->distinct()->orderBy('area')->pluck('area');
+        $xml = view('sitemap', compact('spots', 'areas'))->render();
 
         return response($xml, 200)->header('Content-Type', 'application/xml');
     }

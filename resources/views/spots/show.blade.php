@@ -44,7 +44,10 @@
       @endif
       <p class="text-muted mb-2">{{ $spot->description }}</p>
       @if($spot->area)
-        <p class="text-secondary small mb-2">エリア: {{ $spot->area }}</p>
+        <p class="text-secondary small mb-2">
+          エリア:
+          <a href="{{ route('areas.show', ['area' => $spot->area]) }}">{{ $spot->area }}のキャンプ場一覧</a>
+        </p>
       @endif
       @if(!empty($spot->tags))
         <div class="mb-3">
@@ -58,15 +61,20 @@
         @php
           $providerLabels = ['rakuten' => '楽天トラベルで予約', 'ikyu' => '一休.comで詳細を見る'];
         @endphp
+        {{-- 景品表示法の規定（2023年10月開始のいわゆるステマ規制）により、
+             広告であることが分かる表示が必要。予約リンクはアフィリエイトのため明示する。 --}}
         <div class="mb-3">
-          <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer" class="btn btn-outline-danger btn-sm">
+          <span class="badge bg-secondary-subtle text-secondary-emphasis border me-1">広告</span>
+          <a href="{{ $spot->booking_url }}" target="_blank" rel="nofollow noopener noreferrer sponsored" class="btn btn-outline-danger btn-sm">
             {{ $providerLabels[$spot->booking_provider] ?? '予約サイトで見る' }}
           </a>
+          <p class="text-muted small mt-2 mb-0">予約サイトへのリンクは広告です。予約が成立すると当サイトが紹介料を受け取ることがあります。</p>
         </div>
       @endif
 
       <div class="mb-3">
         <a href="{{ route('spots.index') }}" class="btn btn-secondary">トップページに戻る</a>
+        <a href="{{ route('areas.index') }}" class="btn btn-outline-secondary">都道府県から探す</a>
       </div>
 
       <h2 class="h5 mb-2">
@@ -151,6 +159,22 @@
           <p class="text-muted">まだ口コミはありません。</p>
         @endforelse
       </div>
+
+      {{-- 個別ページ同士がつながっておらず、読んだあとに行く先が無かった。
+           同じエリアの施設を並べて、次のページへ進めるようにする。 --}}
+      @if(isset($nearbySpots) && $nearbySpots->isNotEmpty())
+        <div class="mt-4 pt-3 border-top">
+          <h2 class="h5 mb-3">{{ $spot->area }}のほかのキャンプ場</h2>
+          <div class="d-flex flex-wrap gap-2">
+            @foreach($nearbySpots as $nearby)
+              <a href="{{ route('spots.show', $nearby) }}" class="btn btn-outline-secondary btn-sm">{{ $nearby->name }}</a>
+            @endforeach
+          </div>
+          <div class="mt-3">
+            <a href="{{ route('areas.show', ['area' => $spot->area]) }}">{{ $spot->area }}のキャンプ場をまとめて見る &raquo;</a>
+          </div>
+        </div>
+      @endif
     </div>
   </div>
 </div>
