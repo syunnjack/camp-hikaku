@@ -55,3 +55,44 @@ jobs:
           remote_path: '/home/xs501620/camp-hikaku.jp/app/resources/'
           sftp_only: true
           delete_remote_files: false
+
+      # views だけを送っていたところ、リポジトリ側のビューが参照するルート
+      # (areas.index) が本番に無く、トップが500になった。ビューと食い違わない
+      # よう、コントローラとルートも一緒に送る。
+      - name: Deploy application code to Xserver via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SSH_USERNAME }}
+          server: ${{ secrets.SSH_HOST }}
+          port: 10022
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './app/*'
+          remote_path: '/home/xs501620/camp-hikaku.jp/app/app/'
+          sftp_only: true
+          delete_remote_files: false
+
+      - name: Deploy routes to Xserver via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SSH_USERNAME }}
+          server: ${{ secrets.SSH_HOST }}
+          port: 10022
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './routes/*'
+          remote_path: '/home/xs501620/camp-hikaku.jp/app/routes/'
+          sftp_only: true
+          delete_remote_files: false
+
+      - name: Clear route and view caches
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 10022
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/camp-hikaku.jp/app
+            PHP=$(command -v php8.3 || command -v php || echo /opt/php-8.3.30/bin/php)
+            $PHP artisan route:clear
+            $PHP artisan view:clear
+            $PHP artisan config:clear
