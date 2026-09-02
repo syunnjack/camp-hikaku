@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\TouristSpots;
+
 use App\Helpers\CongestionHelper;
 use App\Models\Spot;
 use App\Support\ContentModeration;
@@ -116,7 +118,11 @@ class SpotController extends Controller
             ->orderByDesc('spots_count')
             ->get();
 
-        return view('spots.area', compact('area', 'spots', 'otherAreas'));
+        // キャンプの前後に寄れる場所。楽天には観光スポットのAPIが無いため
+        // OpenStreetMap から取っている（scripts/fetch-tourist-spots.py）。
+        $tourist = TouristSpots::forPrefecture($area);
+
+        return view('spots.area', compact('area', 'spots', 'otherAreas', 'tourist'));
     }
 
     public function reportCongestion(Request $request, Spot $spot)

@@ -87,6 +87,38 @@
     @endforeach
   </div>
 
+  {{-- 近くの観光スポット。OpenStreetMap 由来の実データ。 --}}
+  @if(!empty($tourist['spots']))
+    <div class="card shadow-sm mt-4">
+      <div class="card-body p-4">
+        <h2 class="h5 mb-3">{{ $area }}の観光スポット</h2>
+        <p class="text-muted small mb-3">キャンプの行き帰りに寄れる場所です。{{ count($tourist['spots']) }}件を掲載しています。</p>
+        <ul class="list-unstyled mb-3">
+          @foreach($tourist['spots'] as $spot)
+            <li class="border-bottom py-2">
+              <span class="fw-bold">{{ $spot['name'] }}</span>
+              @if(!empty($spot['kind']))
+                <span class="badge bg-light text-dark ms-2">{{ $spot['kind'] }}</span>
+              @endif
+              <span class="small ms-2">
+                <a href="https://www.openstreetmap.org/{{ $spot['id'] }}" target="_blank" rel="noopener noreferrer nofollow">地図</a>
+                @if(!empty($spot['website']))
+                  ・<a href="{{ $spot['website'] }}" target="_blank" rel="noopener noreferrer nofollow">公式サイト</a>
+                @endif
+              </span>
+            </li>
+          @endforeach
+        </ul>
+        <p class="text-muted small mb-0">
+          出典: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>（ODbL）。
+          {{ $tourist['confirmedOn'] }} 時点のデータです。
+          <strong>名前が登録されている施設だけを載せています。</strong>地図データに無い場所は出ません。
+          営業時間・休業日は変わることがあるため、行く前に各施設へご確認ください。
+        </p>
+      </div>
+    </div>
+  @endif
+
   @if($otherAreas->isNotEmpty())
     <div class="card shadow-sm mt-4">
       <div class="card-body p-4">
