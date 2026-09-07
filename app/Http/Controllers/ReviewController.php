@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Spot;
 use App\Support\ContentModeration;
 use Illuminate\Http\Request;
+use App\Models\Review;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use App\Support\Discovery;
 
 class ReviewController extends Controller
 {
@@ -18,9 +22,12 @@ class ReviewController extends Controller
             'nickname' => 'nullable|string|max:30',
             'rating' => 'required|integer|between:1,5',
             'comment' => 'required|string|min:5|max:1000',
+            'visited_on' => 'nullable|date_format:Y-m-d|before_or_equal:today',
+            'party' => ['nullable', Rule::in(array_keys(Discovery::TAGS))],
+            'cost' => 'nullable|integer|between:0,1000000',
         ]);
 
-        if (ContentModeration::containsNgWord($validated['comment'])) {
+        if (ContentModeration::containsNgWord(($validated['nickname'] ?? '').' '.$validated['comment'])) {
             return back()->withErrors(['comment' => '投稿内容に使用できない文字列が含まれています。'])->withInput();
         }
 
@@ -34,8 +41,24 @@ class ReviewController extends Controller
             'rating' => $validated['rating'],
             'comment' => $validated['comment'],
             'ip_hash' => $ipHash,
+            'visited_on' => $validated['visited_on'] ?? null,
+            'party' => $validated['party'] ?? null,
+            'cost' => $validated['cost'] ?? null,
         ]);
+        $spot->touch();
 
         return back()->with('success', '口コミを投稿しました。');
+    }
+
+    public function report(Request $request, Review $review)
+    {
+        abort_if($review->is_hidden, 404);
+        $validated = $request->validate(['reason' => 'required|in:spam,personal,abuse,inaccurate']);
+        DB::table('review_reports')->insertOrIgnore([
+            'review_id' => $review->id, 'reason' => $validated['reason'],
+            'ip_hash' => ContentModeration::clientIpHash($request),
+            'created_at' => now(), 'updated_at' => now(),
+        ]);
+        return back()->with('success', '通報を受け付けました。運営が内容を確認します。');
     }
 }

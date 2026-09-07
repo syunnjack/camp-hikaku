@@ -1,12 +1,32 @@
 name: Deploy to Xserver
 
 on:
+  pull_request:
   push:
     branches: [main, master]
   workflow_dispatch:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env && php artisan key:generate && php artisan test
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm ci && npm run build
   deploy:
+    needs: test
+    if: github.event_name != 'pull_request'
+    concurrency:
+      group: camp-hikaku-production
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -14,13 +34,39 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
+
+      # Additive migrations run before new views/controllers reference new columns.
+      - name: Upload migrations
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SSH_USERNAME }}
+          server: ${{ secrets.SSH_HOST }}
+          port: 10022
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './database/migrations/*'
+          remote_path: '/home/xs501620/camp-hikaku.jp/app/database/migrations/'
+          sftp_only: true
+          delete_remote_files: false
+
+      - name: Apply additive migrations
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 10022
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -eu
+            cd ~/camp-hikaku.jp/app
+            PHP=$(command -v php8.3 || command -v php)
+            $PHP artisan migrate --force
 
       - name: Deploy to Xserver via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4

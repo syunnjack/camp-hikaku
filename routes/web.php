@@ -8,6 +8,11 @@ use App\Http\Controllers\LineWebhookController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SpotController::class, 'index'])->name('spots.index');
+Route::get('/categories/{category}', [SpotController::class, 'index'])->name('categories.show');
+Route::get('/compare', [SpotController::class, 'compare'])->name('spots.compare');
+Route::get('/journals', [SpotController::class, 'journal'])->name('journals.index');
+Route::post('/reviews/{review}/report', [ReviewController::class, 'report'])->middleware('throttle:5,1')->name('reviews.report');
+Route::view('/guidelines', 'guidelines')->name('guidelines');
 Route::get('/create', [SpotController::class, 'create'])->name('spots.create');
 Route::post('/spots', [SpotController::class, 'store'])->name('spots.store')->middleware('throttle:5,1');
 Route::get('/areas', [SpotController::class, 'areaIndex'])->name('areas.index');

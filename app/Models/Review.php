@@ -12,12 +12,18 @@ class Review extends Model
         'rating',
         'comment',
         'ip_hash',
+        'visited_on',
+        'party',
+        'cost',
     ];
 
     protected function casts(): array
     {
         return [
             'rating' => 'integer',
+            'visited_on' => 'date',
+            'cost' => 'integer',
+            'is_hidden' => 'boolean',
         ];
     }
 

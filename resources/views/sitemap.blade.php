@@ -8,10 +8,11 @@
     <loc>{{ url('/about') }}</loc>
     <priority>0.3</priority>
   </url>
-  <url>
-    <loc>{{ url('/create') }}</loc>
-    <priority>0.5</priority>
-  </url>
+  <url><loc>{{ url('/journals') }}</loc></url>
+  <url><loc>{{ url('/guidelines') }}</loc></url>
+@foreach(array_keys(\App\Support\Discovery::CATEGORIES) as $category)
+  <url><loc>{{ route('categories.show',$category) }}</loc></url>
+@endforeach
   <url>
     <loc>{{ url('/areas') }}</loc>
     <priority>0.9</priority>

@@ -22,17 +22,11 @@ class ContentModeration
 
     public static function clientIpHash(Request $request): string
     {
-        return hash('sha256', $request->ip() ?? 'unknown');
+        return hash_hmac('sha256', $request->ip() ?? 'unknown', config('app.key'));
     }
 
     public static function isTooSoon(string $key, int $seconds): bool
     {
-        if (Cache::has($key)) {
-            return true;
-        }
-
-        Cache::put($key, true, $seconds);
-
-        return false;
+        return ! Cache::add($key, true, $seconds);
     }
 }

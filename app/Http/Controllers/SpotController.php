@@ -8,13 +8,32 @@ use App\Helpers\CongestionHelper;
 use App\Models\Spot;
 use App\Support\ContentModeration;
 use App\Support\LineMessaging;
+use App\Support\Discovery;
+use App\Models\Review;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class SpotController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, ?string $category = null)
     {
-        $query = Spot::query();
+        if ($category !== null) {
+            abort_unless(isset(Discovery::CATEGORIES[$category]), 404);
+        }
+        $filters = $request->validate([
+            'q' => 'nullable|string|max:100',
+            'area' => 'nullable|string|max:255',
+            'tag' => ['nullable', Rule::in(array_keys(Discovery::TAGS))],
+            'sort' => 'nullable|in:newest,reviews,rating',
+        ]);
+        $query = Spot::query()->withCount('reviews')->withAvg('reviews', 'rating');
+        if ($category) {
+            Discovery::category($query, $category);
+        }
+        if ($request->filled('q')) {
+            $term = str_replace(['%', '_'], ['\\%', '\\_'], $filters['q']);
+            $query->where(fn ($q) => $q->where('name', 'like', "%{$term}%")->orWhere('description', 'like', "%{$term}%")->orWhere('area', 'like', "%{$term}%"));
+        }
 
         if ($request->filled('area')) {
             $query->where('area', $request->input('area'));
@@ -24,10 +43,16 @@ class SpotController extends Controller
             $query->whereJsonContains('tags', $request->input('tag'));
         }
 
-        $spots = $query->latest()->get();
+        match ($filters['sort'] ?? 'newest') {
+            'reviews' => $query->orderByDesc('reviews_count'),
+            'rating' => $query->orderByDesc('reviews_avg_rating')->orderByDesc('reviews_count'),
+            default => $query->latest(),
+        };
+        $spots = $query->orderByDesc('id')->paginate(12)->withQueryString();
         $areas = Spot::query()->whereNotNull('area')->distinct()->pluck('area');
+        $latestReviews = Review::with('spot')->where('is_hidden', false)->latest()->limit(3)->get();
 
-        return view('spots.index', compact('spots', 'areas'));
+        return view('spots.index', compact('spots', 'areas', 'category', 'latestReviews'));
     }
 
     public function create()
@@ -47,6 +72,10 @@ class SpotController extends Controller
             'area' => 'nullable|string|max:255',
             'lat' => 'required|numeric|between:-90,90',
             'lng' => 'required|numeric|between:-180,180',
+            'category' => ['required', Rule::in(array_keys(Discovery::CATEGORIES))],
+            'tags' => 'nullable|array|max:4',
+            'tags.*' => [Rule::in(array_keys(Discovery::TAGS))],
+            'official_url' => 'nullable|url:http,https|max:1000',
         ]);
 
         if (ContentModeration::containsNgWord($validated['name'] . ' ' . ($validated['description'] ?? ''))) {
@@ -168,7 +197,7 @@ class SpotController extends Controller
 
             LineMessaging::push(
                 $favorite->lineUser->line_user_id,
-                "「{$spot->name}」の空き状況が「{$newBucket}」に変わりました。"
+                "「{$spot->name}」の混雑の参考情報が「{$newBucket}」に変わりました。"
             );
         }
     }
@@ -193,5 +222,18 @@ class SpotController extends Controller
         $xml = view('sitemap', compact('spots', 'areas'))->render();
 
         return response($xml, 200)->header('Content-Type', 'application/xml');
+    }
+
+    public function compare(Request $request)
+    {
+        $validated = $request->validate(['ids' => 'nullable|array|max:3', 'ids.*' => 'integer|distinct|exists:spots,id']);
+        $spots = Spot::withCount('reviews')->withAvg('reviews', 'rating')->whereIn('id', $validated['ids'] ?? [])->get();
+        return view('spots.compare', compact('spots'));
+    }
+
+    public function journal()
+    {
+        $reviews = Review::with('spot')->where('is_hidden', false)->latest()->paginate(12);
+        return view('spots.journal', compact('reviews'));
     }
 }
