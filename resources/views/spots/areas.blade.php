@@ -1,27 +1,27 @@
 @extends('layouts.plain')
 
-@section('title', '都道府県からキャンプ場を探す | ' . config('app.name'))
-@section('description', '全国' . $total . '件のキャンプ場・グランピング施設を都道府県別にまとめています。行き先の地域を選ぶと、空き状況の報告と口コミを確認できます。')
+@section('title', '都道府県から施設を探す | ' . config('app.name'))
+@section('description', '全国' . $total . '件のアウトドア・癒やし施設施設を都道府県別にまとめています。行き先の地域を選ぶと、混雑の参考情報の報告と口コミを確認できます。')
 
 @push('structured-data')
 <script type="application/ld+json">
 {!! json_encode([
-  '@@context' => 'https://schema.org',
+  '@'.'context' => 'https://schema.org',
   '@type' => 'CollectionPage',
-  'name' => '都道府県からキャンプ場を探す',
+  'name' => '都道府県から施設を探す',
   'url' => url('/areas'),
-  'description' => '全国のキャンプ場・グランピング施設を都道府県別にまとめたページ。',
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+  'description' => '全国のアウトドア・癒やし施設施設を都道府県別にまとめたページ。',
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}
 </script>
 <script type="application/ld+json">
 {!! json_encode([
-  '@@context' => 'https://schema.org',
+  '@'.'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
       ['@type' => 'ListItem', 'position' => 1, 'name' => config('app.name'), 'item' => url('/')],
       ['@type' => 'ListItem', 'position' => 2, 'name' => '都道府県から探す', 'item' => url('/areas')],
   ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}
 </script>
 @endpush
 
@@ -29,10 +29,10 @@
 <div class="container my-4">
   <div class="card shadow-sm">
     <div class="card-body p-4">
-      <h1 class="h3 fw-bold mb-3">都道府県からキャンプ場を探す</h1>
+      <h1 class="h3 fw-bold mb-3">都道府県から施設を探す</h1>
       <p class="text-muted">
-        全国{{ $total }}件のキャンプ場・グランピング施設を都道府県別にまとめています。
-        行き先の地域を選ぶと、その地域の施設と、利用者から寄せられた空き状況の報告・口コミを確認できます。
+        全国{{ $total }}件のアウトドア・癒やし施設施設を都道府県別にまとめています。
+        行き先の地域を選ぶと、その地域の施設と、利用者から寄せられた混雑の参考情報の報告・口コミを確認できます。
       </p>
 
       <div class="row g-2 mt-3">
@@ -47,7 +47,7 @@
       </div>
 
       <div class="mt-4">
-        <a href="{{ route('spots.index') }}" class="btn btn-secondary">地図から探す</a>
+        <a href="{{ route('spots.index') }}" class="btn btn-secondary">施設を探す</a>
       </div>
     </div>
   </div>

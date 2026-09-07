@@ -1,0 +1,1 @@
+@if($pages->hasPages())<nav class="discovery-pagination" aria-label="ページ送り">@if($pages->previousPageUrl())<a href="{{ $pages->previousPageUrl() }}" rel="prev">← 前へ</a>@endif<span>{{ $pages->currentPage() }} / {{ $pages->lastPage() }}ページ</span>@if($pages->nextPageUrl())<a href="{{ $pages->nextPageUrl() }}" rel="next">次へ →</a>@endif</nav>@endif

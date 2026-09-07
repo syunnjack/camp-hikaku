@@ -14,6 +14,7 @@ class Spot extends Model
         'tags',
         'booking_url',
         'booking_provider',
+        'official_url',
         'lat',
         'lng',
         'congestion_reports',
@@ -32,7 +33,7 @@ class Spot extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->where('is_hidden', false);
     }
 
     public function favorites()

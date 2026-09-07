@@ -10,20 +10,20 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', config('app.name') . ' | みんなで探す・投稿するキャンプ場マップ')</title>
-  <meta name="description" content="@yield('description', '全国のキャンプ場を地図から探せる投稿型マップです。空き状況・口コミをリアルタイムで確認でき、新しいキャンプ場は誰でも匿名で投稿できます。')">
-  <link rel="canonical" href="{{ url()->current() }}">
+  <title>@yield('title', config('app.name') . ' | アウトドア・癒やしの施設と体験記')</title>
+  <meta name="description" content="@yield('description', 'アウトドアと癒やしの施設をジャンル・エリア・体験記から比較できます。訪問記録と利用者の混雑報告を共有するコミュニティです。')">
+  <link rel="canonical" href="{{ request()->filled('page') ? url()->current().'?page='.(int)request('page') : url()->current() }}">
 
   <meta property="og:site_name" content="{{ config('app.name') }}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="@yield('title', config('app.name') . ' | みんなで探す・投稿するキャンプ場マップ')">
-  <meta property="og:description" content="@yield('description', '全国のキャンプ場を地図から探せる投稿型マップです。空き状況・口コミをリアルタイムで確認でき、新しいキャンプ場は誰でも匿名で投稿できます。')">
-  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:title" content="@yield('title', config('app.name') . ' | アウトドア・癒やしの施設と体験記')">
+  <meta property="og:description" content="@yield('description', 'アウトドアと癒やしの施設をジャンル・エリア・体験記から比較できます。訪問記録と利用者の混雑報告を共有するコミュニティです。')">
+  <meta property="og:url" content="{{ request()->filled('page') ? url()->current().'?page='.(int)request('page') : url()->current() }}">
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="@yield('title', config('app.name') . ' | みんなで探す・投稿するキャンプ場マップ')">
-  <meta name="twitter:description" content="@yield('description', '全国のキャンプ場を地図から探せる投稿型マップです。空き状況・口コミをリアルタイムで確認でき、新しいキャンプ場は誰でも匿名で投稿できます。')">
+  <meta name="twitter:title" content="@yield('title', config('app.name') . ' | アウトドア・癒やしの施設と体験記')">
+  <meta name="twitter:description" content="@yield('description', 'アウトドアと癒やしの施設をジャンル・エリア・体験記から比較できます。訪問記録と利用者の混雑報告を共有するコミュニティです。')">
 
   <link rel="icon" href="/favicon.ico" sizes="any">
 
@@ -35,8 +35,13 @@
     .btn-line:hover { background: #05a848; color: #fff; }
   </style>
   @yield('styles')
+  <link rel="stylesheet" href="{{ asset('discovery.css') }}">
+  @if(request()->hasAny(['q','area','tag','sort','ids']) || request()->routeIs('spots.compare','spots.create'))
+  <meta name="robots" content="noindex,follow">
+  @endif
 
   @stack('structured-data')
+  <script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'WebSite','name'=>config('app.name'),'url'=>url('/'),'inLanguage'=>'ja']) !!}</script>
 
   @if(config('services.ga4.id'))
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.id') }}"></script>
@@ -49,14 +54,13 @@
   @endif
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark p-2">
-    <div class="container-fluid">
-      <a href="{{ route('spots.index') }}" class="navbar-brand text-white text-decoration-none">⛺ {{ config('app.name') }}</a>
-      <a href="{{ route('about') }}" class="text-white small text-decoration-none">サイトについて</a>
-    </div>
-  </nav>
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header"><div class="header-inner"><a href="{{ route('spots.index') }}" class="site-brand">{{ config('app.name') }}<small>OUTDOOR & WELLNESS</small></a><nav class="site-nav" aria-label="メインメニュー"><a href="{{ route('spots.index') }}">施設を探す</a><a href="{{ route('areas.index') }}">エリア</a><a href="{{ route('journals.index') }}">体験記</a><a href="{{ route('spots.create') }}" class="discovery-button">＋ 施設を登録</a></nav></div></header>
 
+  <main id="main-content">
   @yield('content')
+  </main>
+  <footer class="site-footer"><div class="discovery-wrap"><p><strong>{{ config('app.name') }}</strong><br>自然と休息を、みんなの体験から。</p><nav aria-label="サイト情報"><a href="{{ route('about') }}">サイトについて</a><a href="{{ route('guidelines') }}">投稿ガイドライン</a><a href="{{ route('areas.index') }}">エリア一覧</a></nav><p class="photo-credit">風景写真：<a href="https://commons.wikimedia.org/wiki/File:Mount_Fuji_from_Lake_Motosu_20241026.jpg">Supanut Arunoprayote / Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>・トリミング）。施設の写真ではありません。</p></div></footer>
 
   @if(config('services.valuecommerce.ikyu_sid') && config('services.valuecommerce.ikyu_pid'))
   <footer class="container my-4 py-3 border-top text-center">
