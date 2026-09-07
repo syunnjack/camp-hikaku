@@ -28,6 +28,8 @@ class Spot extends Model
             'congestion_reports' => 'array',
             'tags' => 'array',
             'average_congestion' => 'float',
+            'source_checked_at' => 'date',
+            'source_urls' => 'array',
         ];
     }
 

@@ -129,6 +129,31 @@ jobs:
           sftp_only: true
           delete_remote_files: false
 
+      - name: Upload verified facility seeder
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SSH_USERNAME }}
+          server: ${{ secrets.SSH_HOST }}
+          port: 10022
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './database/seeders/VerifiedWellnessSeeder.php'
+          remote_path: '/home/xs501620/camp-hikaku.jp/app/database/seeders/'
+          sftp_only: true
+          delete_remote_files: false
+
+      - name: Import verified facilities without overwriting existing records
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 10022
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -eu
+            cd ~/camp-hikaku.jp/app
+            PHP=$(command -v php8.3 || command -v php)
+            $PHP artisan db:seed --class=VerifiedWellnessSeeder --force
+
       - name: Clear route and view caches
         uses: appleboy/ssh-action@v1.0.3
         with:

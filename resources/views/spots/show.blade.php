@@ -21,12 +21,12 @@
   '@type' => in_array($spot->category, ['campground','glamping','solo',null]) ? 'Campground' : ($spot->category === 'spa' ? 'DaySpa' : 'Place'),
   'name' => $spot->name,
   'description' => $spot->description,
-  'geo' => [
+  'geo' => $spot->location_note ? null : [
       '@type' => 'GeoCoordinates',
       'latitude' => $spot->lat,
       'longitude' => $spot->lng,
   ],
-  'address' => $spot->area,
+  'address' => $spot->address ?: $spot->area,
 ]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}
 </script>
 @endpush
@@ -37,7 +37,10 @@
     <div class="card-body p-4">
       <h1 class="h3 fw-bold mb-3">{{ $spot->name }}</h1>
       <nav aria-label="パンくず"><a href="{{ route('spots.index') }}">施設を探す</a> / <a href="{{ route('categories.show',$spot->category ?: 'campground') }}">{{ \App\Support\Discovery::label($spot->category) }}</a> / {{ $spot->name }}</nav>
-      <dl class="detail-facts"><div><dt>ジャンル</dt><dd>{{ \App\Support\Discovery::label($spot->category) }}</dd></div><div><dt>公開中の体験記</dt><dd>{{ $spot->reviews->count() }}件 @if($spot->reviews->count()) · ★ {{ number_format($spot->reviews->avg('rating'),1) }} / 5 @endif</dd></div><div><dt>ページ更新日（投稿などを含む）</dt><dd><time datetime="{{ $spot->updated_at->toAtomString() }}">{{ $spot->updated_at->format('Y年m月d日') }}</time></dd></div><div><dt>公式情報の参照先</dt><dd>@if($spot->official_url)<a href="{{ $spot->official_url }}" rel="ugc nofollow noopener noreferrer" target="_blank">登録された公式URL ↗</a><small class="d-block">利用者登録・運営未確認</small>@else 未登録 @endif</dd></div></dl>
+      <dl class="detail-facts"><div><dt>ジャンル</dt><dd>{{ \App\Support\Discovery::label($spot->category) }}</dd></div><div><dt>公開中の体験記</dt><dd>{{ $spot->reviews->count() }}件 @if($spot->reviews->count()) · ★ {{ number_format($spot->reviews->avg('rating'),1) }} / 5 @endif</dd></div><div><dt>ページ更新日（投稿などを含む）</dt><dd><time datetime="{{ $spot->updated_at->toAtomString() }}">{{ $spot->updated_at->format('Y年m月d日') }}</time></dd></div><div><dt>公式情報の参照先</dt><dd>@if($spot->official_url)<a href="{{ $spot->official_url }}" rel="ugc nofollow noopener noreferrer" target="_blank">公式サイト ↗</a><small class="d-block">@if($spot->source_checked_at)公式情報参照：{{ $spot->source_checked_at->format('Y年m月d日') }}@else 利用者登録・運営未確認 @endif</small>@else 未登録 @endif</dd></div></dl>
+      @if($spot->address)<p><strong>所在地：</strong>{{ $spot->address }}</p>@endif
+      @if($spot->source_urls)<details class="mb-3"><summary>施設情報の出典・確認日</summary><p class="small">{{ $spot->source_checked_at?->format('Y年m月d日') }}に公式ページで名称・所在地・紹介内容を確認しました。営業日や料金は変更されるため、来場前に公式情報をご確認ください。</p><ul>@foreach($spot->source_urls as $sourceUrl)<li><a href="{{ $sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ $sourceUrl }}</a></li>@endforeach</ul></details>@endif
+      @if($spot->location_note)<p class="small text-muted">{{ $spot->location_note }}</p>@endif
       <p><a href="https://www.openstreetmap.org/?mlat={{ $spot->lat }}&mlon={{ $spot->lng }}#map=14/{{ $spot->lat }}/{{ $spot->lng }}" target="_blank" rel="noopener noreferrer">地図で場所を確認 ↗</a>　<a href="#write-review">体験記を書く ↓</a></p>
       @php
         $tagLabels = ['family' => 'ファミリー', 'couple' => 'カップル', 'friends' => 'お友達', 'solo' => 'ソロキャンプ'];
