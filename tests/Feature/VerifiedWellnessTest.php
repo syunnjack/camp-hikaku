@@ -11,14 +11,15 @@ class VerifiedWellnessTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_catalog_is_repeatable_and_each_genre_has_two_real_records(): void
+    public function test_catalog_is_repeatable_and_covers_the_country_with_real_records(): void
     {
         $this->seed(VerifiedWellnessSeeder::class);
         $this->seed(VerifiedWellnessSeeder::class);
-        $this->assertDatabaseCount('spots', 8);
+        $this->assertDatabaseCount('spots', 155);
         $this->assertDatabaseCount('reviews', 0);
-        foreach (['activity','ganbanyoku','healing','spa'] as $category) {
-            $this->assertSame(2, Spot::where('category', $category)->count());
+        foreach (['activity'=>45,'ganbanyoku'=>17,'healing'=>62,'spa'=>31] as $category=>$count) {
+            $this->assertSame($count, Spot::where('category', $category)->count());
+            $this->assertGreaterThanOrEqual(44, Spot::distinct()->count('area'));
             $this->get('/categories/'.$category)->assertOk()->assertDontSee('この条件の施設は、まだありません。');
         }
         foreach (Spot::all() as $spot) {
@@ -36,7 +37,7 @@ class VerifiedWellnessTest extends TestCase
         $spot = Spot::create(['name'=>'スパ ラクーア','area'=>'東京都','category'=>'spa','description'=>'利用者が更新した情報','lat'=>35.7,'lng'=>139.7,'likes_count'=>7]);
         $spot->reviews()->create(['nickname'=>'訪問者','rating'=>4,'comment'=>'実際の体験記です。','ip_hash'=>'test']);
         $this->seed(VerifiedWellnessSeeder::class);
-        $this->assertDatabaseCount('spots', 8);
+        $this->assertDatabaseCount('spots', 155);
         $this->assertDatabaseHas('spots',['id'=>$spot->id,'description'=>'利用者が更新した情報','likes_count'=>7]);
         $this->assertDatabaseCount('reviews', 1);
     }

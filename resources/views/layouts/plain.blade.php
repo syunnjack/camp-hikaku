@@ -36,7 +36,7 @@
   </style>
   @yield('styles')
   <link rel="stylesheet" href="{{ asset('discovery.css') }}">
-  @if(request()->hasAny(['q','area','tag','sort','ids']) || request()->routeIs('spots.compare','spots.create'))
+  @if(request()->hasAny(['q','area','tag','sort','ids','verified']) || request()->routeIs('spots.compare','spots.create','spots.shortlist'))
   <meta name="robots" content="noindex,follow">
   @endif
 
@@ -55,7 +55,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">本文へ移動</a>
-  <header class="site-header"><div class="header-inner"><a href="{{ route('spots.index') }}" class="site-brand">{{ config('app.name') }}<small>OUTDOOR & WELLNESS</small></a><nav class="site-nav" aria-label="メインメニュー"><a href="{{ route('spots.index') }}">施設を探す</a><a href="{{ route('areas.index') }}">エリア</a><a href="{{ route('journals.index') }}">体験記</a><a href="{{ route('spots.create') }}" class="discovery-button">＋ 施設を登録</a></nav></div></header>
+  <header class="site-header"><div class="header-inner"><a href="{{ route('spots.index') }}" class="site-brand">{{ config('app.name') }}<small>OUTDOOR & WELLNESS</small></a><nav class="site-nav" aria-label="メインメニュー"><a href="{{ route('spots.index') }}">施設を探す</a><a href="{{ route('areas.index') }}">エリア</a><a href="{{ route('journals.index') }}">体験記</a><a href="{{ route('spots.shortlist') }}" data-my-list>♡ 行きたい <span data-saved-count></span></a><a href="{{ route('spots.create') }}" class="discovery-button">＋ 施設を登録</a></nav></div></header>
 
   <main id="main-content">
   @yield('content')
@@ -75,5 +75,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   @yield('scripts')
+<p class="save-status" role="status" id="save-status"></p><script src="{{ asset('discovery-list.js') }}" defer></script>
 </body>
 </html>
