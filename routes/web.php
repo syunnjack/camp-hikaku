@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SpotController::class, 'index'])->name('spots.index');
 Route::get('/categories/{category}', [SpotController::class, 'index'])->name('categories.show');
 Route::get('/compare', [SpotController::class, 'compare'])->name('spots.compare');
+Route::get('/my-list', [SpotController::class, 'shortlist'])->name('spots.shortlist');
 Route::get('/journals', [SpotController::class, 'journal'])->name('journals.index');
 Route::post('/reviews/{review}/report', [ReviewController::class, 'report'])->middleware('throttle:5,1')->name('reviews.report');
 Route::view('/guidelines', 'guidelines')->name('guidelines');

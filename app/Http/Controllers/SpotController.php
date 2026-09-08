@@ -25,6 +25,7 @@ class SpotController extends Controller
             'area' => 'nullable|string|max:255',
             'tag' => ['nullable', Rule::in(array_keys(Discovery::TAGS))],
             'sort' => 'nullable|in:newest,reviews,rating',
+            'verified' => 'nullable|in:1',
         ]);
         $query = Spot::query()->withCount('reviews')->withAvg('reviews', 'rating');
         if ($category) {
@@ -32,7 +33,11 @@ class SpotController extends Controller
         }
         if ($request->filled('q')) {
             $term = str_replace(['%', '_'], ['\\%', '\\_'], $filters['q']);
-            $query->where(fn ($q) => $q->where('name', 'like', "%{$term}%")->orWhere('description', 'like', "%{$term}%")->orWhere('area', 'like', "%{$term}%"));
+            $query->where(fn ($q) => $q->where('name', 'like', "%{$term}%")->orWhere('description', 'like', "%{$term}%")->orWhere('area', 'like', "%{$term}%")->orWhere('address', 'like', "%{$term}%"));
+        }
+
+        if ($request->input('verified') === '1') {
+            $query->whereNotNull('source_checked_at');
         }
 
         if ($request->filled('area')) {
@@ -49,10 +54,19 @@ class SpotController extends Controller
             default => $query->latest(),
         };
         $spots = $query->orderByDesc('id')->paginate(12)->withQueryString();
-        $areas = Spot::query()->whereNotNull('area')->distinct()->pluck('area');
+        $areaQuery = Spot::query()->whereNotNull('area');
+        if ($category) { Discovery::category($areaQuery, $category); }
+        $areaCounts = $areaQuery->selectRaw('area, count(*) as total')->groupBy('area')->orderBy('area')->pluck('total', 'area');
+        $areas = $areaCounts->keys();
+        $categoryCounts = collect(Discovery::CATEGORIES)->map(function ($item, $key) {
+            $count = Spot::query();
+            Discovery::category($count, $key);
+            return $count->count();
+        });
+        $catalogStats = ['total' => Spot::count(), 'verified' => Spot::whereNotNull('source_checked_at')->count(), 'areas' => Spot::whereNotNull('area')->distinct()->count('area')];
         $latestReviews = Review::with('spot')->where('is_hidden', false)->latest()->limit(3)->get();
 
-        return view('spots.index', compact('spots', 'areas', 'category', 'latestReviews'));
+        return view('spots.index', compact('spots', 'areas', 'category', 'latestReviews', 'areaCounts', 'categoryCounts', 'catalogStats'));
     }
 
     public function create()
@@ -235,5 +249,14 @@ class SpotController extends Controller
     {
         $reviews = Review::with('spot')->where('is_hidden', false)->latest()->paginate(12);
         return view('spots.journal', compact('reviews'));
+    }
+
+    public function shortlist(Request $request)
+    {
+        $validated = $request->validate(['ids' => 'nullable|array|max:50', 'ids.*' => 'integer|min:1|distinct']);
+        $ids = $validated['ids'] ?? [];
+        $spots = Spot::withCount('reviews')->withAvg('reviews', 'rating')->whereIn('id', $ids)->get()
+            ->sortBy(fn ($spot) => array_search($spot->id, $ids))->values();
+        return view('spots.shortlist', compact('spots'));
     }
 }
