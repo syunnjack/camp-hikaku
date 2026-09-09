@@ -158,6 +158,7 @@ jobs:
             $PHP artisan db:seed --class=MetropolitanGuideSeeder --force
             $PHP artisan db:seed --class=KansaiGuideSeeder --force
             $PHP artisan db:seed --class=CityGuideSeeder --force
+            $PHP artisan db:seed --class=ApiVerifiedFacilitiesSeeder --force
 
       - name: Clear route and view caches
         uses: appleboy/ssh-action@v1.0.3

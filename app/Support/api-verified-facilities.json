@@ -1,0 +1,479 @@
+[
+  {
+    "name": "里楽巣FUJINO",
+    "area": "神奈川県",
+    "city": "sagamihara",
+    "category": "glamping",
+    "address": "神奈川県相模原市緑区牧野4611-1",
+    "official_url": "https://hibiya-stay.com/relax/",
+    "description": "藤野の自然の中で過ごすグランピング施設。日比谷花壇が手がける滞在施設で、宿泊タイプや食事内容を公式サイトから確認できます。",
+    "source_urls": [
+      "https://hibiya-stay.com/relax/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "RETOUR KYOTO（ルトゥール京都）",
+    "area": "京都府",
+    "city": "kyoto",
+    "category": "glamping",
+    "address": "京都府京都市右京区京北上黒田町倉谷2-1",
+    "official_url": "https://www.kyotokeihoku-glamping.com/",
+    "description": "京北の川沿いにあるヴィラ・ロッジ型のグランピング。客室風呂や個別ダイニングを備えています。公式アクセス案内では狭い道路を避ける経路を案内しています。",
+    "source_urls": [
+      "https://www.kyotokeihoku-glamping.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "パームガーデン舞洲",
+    "area": "大阪府",
+    "city": "osaka",
+    "category": "glamping",
+    "address": "大阪府大阪市此花区北港緑地2丁目3番57号",
+    "official_url": "https://www.pg-maishima.com/",
+    "description": "舞洲の海辺で宿泊とバーベキューを楽しめるグランピング施設。宿泊と日帰りではプランが異なるため、利用日と人数に合うプランを選べます。",
+    "source_urls": [
+      "https://www.pg-maishima.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "TOMORROW COAST",
+    "area": "福岡県",
+    "city": "kitakyushu",
+    "category": "glamping",
+    "address": "福岡県北九州市若松区大字安屋2843番",
+    "official_url": "https://tomorrow-coast.com/",
+    "description": "北九州市若松区の海辺にあるグランピング施設。プライベートな滞在空間を案内しており、客室タイプや食事、利用条件を公式サイトで比較できます。",
+    "source_urls": [
+      "https://tomorrow-coast.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "villa vacances hamanako",
+    "area": "静岡県",
+    "city": "hamamatsu",
+    "category": "glamping",
+    "address": "静岡県浜松市中央区協和町102",
+    "official_url": "https://www.stylecasa.jp/villa/",
+    "description": "浜名湖を望むヴィラとドームテントの宿泊施設。リゾートホテル型の客室とグランピング用ドームがあるため、予約時に部屋タイプを確認してください。",
+    "source_urls": [
+      "https://www.stylecasa.jp/villa/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "グランドーム神戸天空",
+    "area": "兵庫県",
+    "city": "kobe",
+    "category": "glamping",
+    "address": "兵庫県神戸市北区山田町原野1-1",
+    "official_url": "https://kobetenku.com/glampdome/",
+    "description": "神戸市北区にあるグランピング施設。食事付き・食材持込のプランや日帰りプランを案内しています。愛犬同伴は対応する客室タイプを確認してください。",
+    "source_urls": [
+      "https://kobetenku.com/glampdome/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "札幌野営場 by 焚火人",
+    "area": "北海道",
+    "city": "sapporo",
+    "category": "solo",
+    "address": "北海道札幌市中央区宮の森1272-1",
+    "official_url": "https://sapporo-camp.jp/",
+    "description": "札幌市中央区で焚き火とキャンプを楽しめる野営場。宿泊とデイキャンプを1名単位で案内しています。設備や持ち物は公式の利用ガイドをご確認ください。",
+    "source_urls": [
+      "https://sapporo-camp.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "IZUMI PEAK BASE",
+    "area": "宮城県",
+    "city": "sendai",
+    "category": "solo",
+    "address": "宮城県仙台市泉区福岡字岳山8-1",
+    "official_url": "https://peak-base.com/",
+    "description": "泉ケ岳のキャンプ施設。公式サイトで一人でのキャンプにも対応する利用シーンを紹介しています。サイトごとの設備や利用日程を確認して予約できます。",
+    "source_urls": [
+      "https://peak-base.com/",
+      "https://peak-base.com/camp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "さいたま桃月園キャンプ場",
+    "area": "埼玉県",
+    "city": "saitama",
+    "category": "solo",
+    "address": "埼玉県さいたま市西区西遊馬3131",
+    "official_url": "https://saitama-tougetsuen-camp.com/",
+    "description": "さいたま市西区のキャンプ場。公式サイトでソロ利用を案内し、区画サイトは宿泊・デイキャンプに対応しています。大人数利用には制限があります。",
+    "source_urls": [
+      "https://saitama-tougetsuen-camp.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "Hamanako Camp Field Asoviva",
+    "area": "静岡県",
+    "city": "hamamatsu",
+    "category": "solo",
+    "address": "静岡県浜松市村櫛町 内山海岸",
+    "official_url": "https://www.asoviva-camp.com/",
+    "description": "浜名湖の内山海岸奥にあるキャンプ場。ソロ専用、ソロ・デュオ専用のサイトを公式に案内しています。入口の位置は公式アクセスページをご確認ください。",
+    "source_urls": [
+      "https://www.asoviva-camp.com/",
+      "https://www.asoviva-camp.com/access/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "海辺の森キャンプ場",
+    "area": "新潟県",
+    "city": "niigata",
+    "category": "solo",
+    "address": "新潟県新潟市北区島見町1-135",
+    "official_url": "https://www.umibenomori.com/",
+    "description": "日本海に面した松林のキャンプ場。公式の施設紹介でソロキャンパー向けのサイトを案内しています。サイトの広さや設備、営業期間を確認して選べます。",
+    "source_urls": [
+      "https://www.umibenomori.com/",
+      "https://www.umibenomori.com/pg100.html",
+      "https://www.umibenomori.com/corporate.html"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "楽々ガーデン",
+    "area": "千葉県",
+    "city": "chiba",
+    "category": "solo",
+    "address": "千葉県千葉市若葉区中野町2050",
+    "official_url": "https://laqlaqgarden.com/",
+    "description": "千葉市若葉区のオートキャンプ場。ソロ・デュオ・家族での利用を案内し、大人1名と車1台を含む料金を掲載しています。追加人数と区画条件は料金案内をご確認ください。",
+    "source_urls": [
+      "https://laqlaqgarden.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "フィールドアスレチック 横浜つくし野コース",
+    "area": "神奈川県",
+    "city": "yokohama",
+    "category": "activity",
+    "address": "神奈川県横浜市緑区長津田町4191",
+    "official_url": "https://www.tsukushino.co.jp/",
+    "description": "自然の起伏や池を生かしたフィールドアスレチック。50種目の木製遊具のほか、幼児向けの遊具も案内しています。休日の駐車場の混雑にご注意ください。",
+    "source_urls": [
+      "https://www.tsukushino.co.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "PANZAてんしばイーナ",
+    "area": "大阪府",
+    "city": "osaka",
+    "category": "activity",
+    "address": "大阪府大阪市天王寺区茶臼山町5番55号",
+    "official_url": "https://panza.co.jp/tenshiba/",
+    "description": "天王寺のてんしばイーナにあるクライミング・アスレチック施設。コースにより体重や保護者同伴の条件が異なるため、参加前に公式の利用制限をご確認ください。",
+    "source_urls": [
+      "https://panza.co.jp/tenshiba/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "舞洲シーサイドアスレチック",
+    "area": "大阪府",
+    "city": "osaka",
+    "category": "activity",
+    "address": "大阪府大阪市此花区北港緑地2-1-1-107",
+    "official_url": "https://maishima-seasideathletic.com/",
+    "description": "舞洲でハーネスを装着して挑戦する空中アスレチック。強風・豪雨・雷で休止する場合があります。公式アクセス案内で入口と駐車場を確認してください。",
+    "source_urls": [
+      "https://maishima-seasideathletic.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "山の下みなとランド",
+    "area": "新潟県",
+    "city": "niigata",
+    "category": "activity",
+    "address": "新潟県新潟市東区臨海町地内（山の下みなとタワー隣）",
+    "official_url": "https://www.city.niigata.lg.jp/higashi/shisetsu/yoka/leisure/yamanoshitaminatora.html",
+    "description": "帆船をイメージした複合遊具などを備える公園。新潟市の公式案内では約70種類の遊具を紹介しています。季節ごとの開園時間や利用案内をご確認ください。",
+    "source_urls": [
+      "https://www.city.niigata.lg.jp/higashi/shisetsu/yoka/leisure/yamanoshitaminatora.html"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "NOBOLT（ノボルト）",
+    "area": "福岡県",
+    "city": "fukuoka",
+    "category": "activity",
+    "address": "福岡県福岡市西区小戸2-10-76",
+    "official_url": "https://www.taito.co.jp/NOBOLT",
+    "description": "福岡市西区の屋内アクティビティ施設。利用料金や施設紹介、参加条件を公式サイトで案内しています。年齢・身長などに合った利用プランを確認してください。",
+    "source_urls": [
+      "https://www.taito.co.jp/NOBOLT"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "アスレチック施設ぴーす",
+    "area": "熊本県",
+    "city": "kumamoto",
+    "category": "activity",
+    "address": "熊本県熊本市北区植木町投刀塚1-1",
+    "official_url": "https://p-ce.com/",
+    "description": "熊本市北区植木町のアスレチック施設。公式サイトに設備、料金、アクセスを掲載しています。参加するアクティビティの利用条件と営業日をご確認ください。",
+    "source_urls": [
+      "https://p-ce.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "仙台湯処 サンピアの湯",
+    "area": "宮城県",
+    "city": "sendai",
+    "category": "ganbanyoku",
+    "address": "宮城県仙台市若林区蒲町東4番地の2",
+    "official_url": "https://sunpia-sendai.jp/onsen/",
+    "description": "天然温泉と岩盤浴を備えた温浴施設。岩盤浴と入館では利用時間が異なります。夜間の特別営業や料金は公式のお知らせをご確認ください。",
+    "source_urls": [
+      "https://sunpia-sendai.jp/onsen/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "東静岡 天然温泉 柚木の郷",
+    "area": "静岡県",
+    "city": "shizuoka",
+    "category": "ganbanyoku",
+    "address": "静岡県静岡市葵区東静岡1丁目1番57号",
+    "official_url": "https://www.yunokinosato.com/",
+    "description": "東静岡駅北口近くの温浴施設。薬石健美房に複数の岩盤浴室を備えています。混雑時は入場制限を行う場合があるため、最新の案内をご確認ください。",
+    "source_urls": [
+      "https://www.yunokinosato.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "蔵前温泉 さらさのゆ",
+    "area": "大阪府",
+    "city": "sakai",
+    "category": "ganbanyoku",
+    "address": "大阪府堺市北区蔵前町1-3-5",
+    "official_url": "https://www.sarasanoyu.com/",
+    "description": "堺市北区の天然温泉施設。岩盤浴のほか、キッズルームやコミックコーナーを案内しています。岩盤浴の料金や利用条件は公式サイトをご確認ください。",
+    "source_urls": [
+      "https://www.sarasanoyu.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "塩屋天然温泉 ほの湯 楽々園",
+    "area": "広島県",
+    "city": "hiroshima",
+    "category": "ganbanyoku",
+    "address": "広島県広島市佐伯区楽々園5丁目7-1",
+    "official_url": "https://www.honoyu.jp/rakurakuen/",
+    "description": "広島市佐伯区にある温浴施設。温泉と、複数の岩盤浴設備・休憩スペースを備えたチムジルバンを案内しています。各エリアの利用料金をご確認ください。",
+    "source_urls": [
+      "https://www.honoyu.jp/rakurakuen/",
+      "https://www.honoyu.jp/rakurakuen/access"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "蘭々の湯",
+    "area": "千葉県",
+    "city": "chiba",
+    "category": "ganbanyoku",
+    "address": "千葉県千葉市稲毛区園生町445-2",
+    "official_url": "http://www.raranoyu.jp/",
+    "description": "千葉市稲毛区の温浴施設。お風呂と岩盤温熱を利用できます。入場料と岩盤温熱の料金、年齢条件、設備点検による休館日は公式案内をご確認ください。",
+    "source_urls": [
+      "http://www.raranoyu.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "照葉スパリゾート門司店",
+    "area": "福岡県",
+    "city": "kitakyushu",
+    "category": "ganbanyoku",
+    "address": "福岡県北九州市門司区大里本町3丁目13番26号",
+    "official_url": "https://terihaspa.jp/moji/",
+    "description": "門司区にある温浴・岩盤浴施設。岩盤房と休憩エリアを案内しています。確認時点で無料巡回バスは運休、ビュッフェレストランは休業の案内があるため、来館前に最新情報をご確認ください。",
+    "source_urls": [
+      "https://terihaspa.jp/moji/",
+      "https://terihaspa.jp/moji/access.html"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "北海道大学植物園",
+    "area": "北海道",
+    "city": "sapporo",
+    "category": "healing",
+    "address": "北海道札幌市中央区北3条西8丁目",
+    "official_url": "https://www.hokudai.ac.jp/fsc/bg/",
+    "description": "札幌中心部にある大学の植物園。植物や自然史に触れながら園内を散策できます。確認時点では老朽化によりガラス温室の公開を休止しています。",
+    "source_urls": [
+      "https://www.hokudai.ac.jp/fsc/bg/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "大阪市立長居植物園",
+    "area": "大阪府",
+    "city": "osaka",
+    "category": "healing",
+    "address": "大阪府大阪市東住吉区長居公園1-23",
+    "official_url": "https://botanical-garden.nagai-park.jp/",
+    "description": "長居公園内で季節の植物や専門園を巡れる植物園。公式サイトでは開花情報やおすすめの散策ルートを紹介しています。開園日と利用できる入口をご確認ください。",
+    "source_urls": [
+      "https://botanical-garden.nagai-park.jp/",
+      "https://botanical-garden.nagai-park.jp/guide/access"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "大仙公園 日本庭園",
+    "area": "大阪府",
+    "city": "sakai",
+    "category": "healing",
+    "address": "大阪府堺市堺区大仙中町 大仙公園内",
+    "official_url": "https://www.daisenteien.jp/",
+    "description": "大仙公園内の築山林泉回遊式庭園。池や流れ、橋を巡りながら四季の景観を楽しめます。庭園の開園時間と休園日は公式案内をご確認ください。",
+    "source_urls": [
+      "https://www.daisenteien.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "神戸布引ハーブ園／ロープウェイ",
+    "area": "兵庫県",
+    "city": "kobe",
+    "category": "healing",
+    "address": "兵庫県神戸市中央区北野町1-4-3",
+    "official_url": "https://www.kobeherb.com/",
+    "description": "ロープウェイで訪れるハーブ園。公式サイトでは庭園の見どころや季節の情報を紹介しています。ロープウェイの運行状況と営業時間を確認してお出かけください。",
+    "source_urls": [
+      "https://www.kobeherb.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "岡山市半田山植物園",
+    "area": "岡山県",
+    "city": "okayama",
+    "category": "healing",
+    "address": "岡山県岡山市北区法界院3-1",
+    "official_url": "https://www.okayama-park.or.jp/handayama/",
+    "description": "岡山市街を見渡せる丘陵地の植物園。季節の草花を見ながら園内を巡れます。坂のある地形のため、歩きやすい服装で開園時間に余裕を持って訪れてください。",
+    "source_urls": [
+      "https://www.okayama-park.or.jp/handayama/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "福岡市植物園",
+    "area": "福岡県",
+    "city": "fukuoka",
+    "category": "healing",
+    "address": "福岡県福岡市中央区小笹5丁目1番1号",
+    "official_url": "https://botanical-garden.city.fukuoka.lg.jp/",
+    "description": "季節の植物や園内施設を楽しめる福岡市の植物園。開花情報や催しは公式サイトで案内しています。動物園とは所在地・入口が異なるため、アクセスをご確認ください。",
+    "source_urls": [
+      "https://botanical-garden.city.fukuoka.lg.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "豊平峡温泉",
+    "area": "北海道",
+    "city": "sapporo",
+    "category": "spa",
+    "address": "北海道札幌市南区定山渓608-2",
+    "official_url": "https://hoheikyo.co.jp/",
+    "description": "定山渓エリアの日帰り温泉。源泉かけ流しの温泉と食事処を案内しています。公式に宿泊施設と家族風呂はないと明記されています。",
+    "source_urls": [
+      "https://hoheikyo.co.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "天然温泉 満天の湯",
+    "area": "神奈川県",
+    "city": "yokohama",
+    "category": "spa",
+    "address": "神奈川県横浜市保土ケ谷区上星川3丁目1-1",
+    "official_url": "https://mantennoyu.com/",
+    "description": "相鉄線上星川駅南口近くの日帰り温浴施設。駅からのアクセスを公式サイトで案内しています。設備点検の休館日や最終受付時間をご確認ください。",
+    "source_urls": [
+      "https://mantennoyu.com/",
+      "https://mantennoyu.com/access/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "縄文天然温泉 志楽の湯",
+    "area": "神奈川県",
+    "city": "kawasaki",
+    "category": "spa",
+    "address": "神奈川県川崎市幸区塚越4-314-1",
+    "official_url": "https://www.shiraku.jp/",
+    "description": "川崎市幸区にある天然温泉施設。館内施設と利用料金、交通案内を公式サイトで確認できます。リラクゼーションの予約・利用条件は入浴と分けてご確認ください。",
+    "source_urls": [
+      "https://www.shiraku.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "さいたま清河寺温泉",
+    "area": "埼玉県",
+    "city": "saitama",
+    "category": "spa",
+    "address": "埼玉県さいたま市西区大字清河寺683-4",
+    "official_url": "https://www.seiganji-onsen.com/",
+    "description": "さいたま市西区にある日帰り温泉。施設紹介や料金表、アクセスを公式に案内しています。設備点検による休館日と入館条件をご確認ください。",
+    "source_urls": [
+      "https://www.seiganji-onsen.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "天然温泉アーバンクア SPA＆LIVING",
+    "area": "愛知県",
+    "city": "nagoya",
+    "category": "spa",
+    "address": "愛知県名古屋市中区富士見町16-17 キャッスルタウン記念橋3F",
+    "official_url": "https://p-castle.co.jp/urban_quar/",
+    "description": "名古屋市中区にある天然温泉施設。温浴に加えて岩盤浴・フィンランドサウナを案内しています。利用コースに含まれるエリアや館内着をご確認ください。",
+    "source_urls": [
+      "https://p-castle.co.jp/urban_quar/",
+      "https://p-castle.co.jp/urban_quar/access/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "name": "温泉カフェ あがんなっせ",
+    "area": "熊本県",
+    "city": "kumamoto",
+    "category": "spa",
+    "address": "熊本県熊本市北区鶴羽田3丁目10番1号",
+    "official_url": "http://agannasse-spa.jp/",
+    "description": "熊本市北区にある温泉施設。チムジルバン・岩盤浴を含む館内サービスを案内しています。利用料金や入館条件、各サービスの営業時間をご確認ください。",
+    "source_urls": [
+      "http://agannasse-spa.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  }
+]
