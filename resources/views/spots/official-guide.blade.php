@@ -10,5 +10,5 @@
   <h3 class="h5 mt-4">この利用案内の出典</h3>
   <ul>@foreach($guide['sources'] as $source)<li><a href="{{ $source['url'] }}" target="_blank" rel="noopener noreferrer">{{ $source['label'] }} ↗</a></li>@endforeach</ul>
   <p class="small">料金・開催状況は変更される場合があります。日付と人数を指定した最終条件は公式サイトで確認してください。</p>
-  <a href="{{ route('guides.'.$guide['region']) }}">{{ $guide['region_label'] }}の6ジャンルを比較する →</a>
+  <a href="{{ $guide['region']==='cities' ? route('cities.show',$guide['city']) : route('guides.'.$guide['region']) }}">{{ $guide['region_label'] }}{{ $guide['region']==='cities'?'の施設を比較する':'の6ジャンルを比較する' }} →</a>
 </section>

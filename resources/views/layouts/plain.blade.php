@@ -55,7 +55,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">本文へ移動</a>
-  <header class="site-header"><div class="header-inner"><a href="{{ route('spots.index') }}" class="site-brand">{{ config('app.name') }}<small>OUTDOOR & WELLNESS</small></a><nav class="site-nav" aria-label="メインメニュー"><a href="{{ route('spots.index') }}">施設を探す</a><a href="{{ route('guides.metropolitan') }}">首都圏ガイド</a><a href="{{ route('guides.kansai') }}">関西ガイド</a><a href="{{ route('areas.index') }}">エリア</a><a href="{{ route('journals.index') }}">体験記</a><a href="{{ route('spots.shortlist') }}" data-my-list>♡ 行きたい <span data-saved-count></span></a><a href="{{ route('spots.create') }}" class="discovery-button">＋ 施設を登録</a></nav></div></header>
+  <header class="site-header"><div class="header-inner"><a href="{{ route('spots.index') }}" class="site-brand">{{ config('app.name') }}<small>OUTDOOR & WELLNESS</small></a><nav class="site-nav" aria-label="メインメニュー"><a href="/cities">全国20都市</a><a href="{{ route('spots.index') }}">施設を探す</a><a href="{{ route('guides.metropolitan') }}">首都圏ガイド</a><a href="{{ route('guides.kansai') }}">関西ガイド</a><a href="{{ route('areas.index') }}">エリア</a><a href="{{ route('journals.index') }}">体験記</a><a href="{{ route('spots.shortlist') }}" data-my-list>♡ 行きたい <span data-saved-count></span></a><a href="{{ route('spots.create') }}" class="discovery-button">＋ 施設を登録</a></nav></div></header>
 
   <main id="main-content">
   @yield('content')

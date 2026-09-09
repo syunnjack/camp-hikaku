@@ -1,0 +1,342 @@
+{
+  "sapporo": {
+    "label": "札幌市",
+    "area": "北海道",
+    "intro": "里山の宿泊と公園のキャンプを比較。市街地から現地までの移動も含めて計画できます。",
+    "facilities": [
+      {
+        "key": "quope",
+        "scope": "city",
+        "municipality": "札幌市"
+      },
+      {
+        "key": "takino-camp",
+        "scope": "city",
+        "municipality": "札幌市"
+      }
+    ]
+  },
+  "sendai": {
+    "label": "仙台市",
+    "area": "宮城県",
+    "intro": "秋保の宿泊と泉区の岩盤浴。泊まりと日帰りで予算・利用時間を比べられます。",
+    "facilities": [
+      {
+        "key": "glampseason",
+        "scope": "city",
+        "municipality": "仙台市"
+      },
+      {
+        "key": "spametsa-sendai",
+        "scope": "city",
+        "municipality": "仙台市"
+      }
+    ]
+  },
+  "saitama": {
+    "label": "さいたま市",
+    "area": "埼玉県",
+    "intro": "日帰りキャンプと花の散策から選ぶ休日。キャンプは宿泊不可の区画利用です。",
+    "facilities": [
+      {
+        "key": "akigase-daycamp",
+        "scope": "city",
+        "municipality": "さいたま市"
+      },
+      {
+        "key": "hananooka",
+        "scope": "city",
+        "municipality": "さいたま市"
+      }
+    ]
+  },
+  "chiba": {
+    "label": "千葉市",
+    "area": "千葉県",
+    "intro": "海辺の公園に泊まるか、森の樹上アスレチックへ。持ち物と予約条件を比較。",
+    "facilities": [
+      {
+        "key": "small-planet",
+        "scope": "city",
+        "municipality": "千葉市"
+      },
+      {
+        "key": "forest-chiba",
+        "scope": "city",
+        "municipality": "千葉市"
+      }
+    ]
+  },
+  "yokohama": {
+    "label": "横浜市",
+    "area": "神奈川県",
+    "intro": "樹上アスレチックと黒湯の温泉。郊外の施設までのバス・駐車場も確認できます。",
+    "facilities": [
+      {
+        "key": "forest-yokohama",
+        "scope": "city",
+        "municipality": "横浜市"
+      },
+      {
+        "key": "gokuraku-serigaya",
+        "scope": "city",
+        "municipality": "横浜市"
+      }
+    ]
+  },
+  "kawasaki": {
+    "label": "川崎市",
+    "area": "神奈川県",
+    "intro": "岩盤浴と日帰り温泉を比較。入浴料、追加料金、対象年齢を確認して選べます。",
+    "facilities": [
+      {
+        "key": "kirari-mizonokuchi",
+        "scope": "city",
+        "municipality": "川崎市"
+      },
+      {
+        "key": "yukemuri-miyamaedaira",
+        "scope": "city",
+        "municipality": "川崎市"
+      }
+    ]
+  },
+  "sagamihara": {
+    "label": "相模原市",
+    "area": "神奈川県",
+    "intro": "常設の宿泊施設と持込テントのソロプラン。道具や食事の準備で選び分けられます。",
+    "facilities": [
+      {
+        "key": "pica-sagamiko",
+        "scope": "city",
+        "municipality": "相模原市"
+      },
+      {
+        "key": "noro-lodge",
+        "scope": "city",
+        "municipality": "相模原市"
+      }
+    ]
+  },
+  "niigata": {
+    "label": "新潟市",
+    "area": "新潟県",
+    "intro": "市内の植物園散策と、阿賀野市へ足を延ばす宿泊候補。市内と近郊を分けて紹介します。",
+    "facilities": [
+      {
+        "key": "ikarashitei",
+        "scope": "nearby",
+        "municipality": "阿賀野市"
+      },
+      {
+        "key": "niigata-botanical",
+        "scope": "city",
+        "municipality": "新潟市"
+      }
+    ]
+  },
+  "shizuoka": {
+    "label": "静岡市",
+    "area": "静岡県",
+    "intro": "梅ケ島のキャンプと由比のハイキング。水・装備・山道の条件を確かめて出かける休日です。",
+    "facilities": [
+      {
+        "key": "umegashima-camp",
+        "scope": "city",
+        "municipality": "静岡市"
+      },
+      {
+        "key": "hamaishidake",
+        "scope": "city",
+        "municipality": "静岡市"
+      }
+    ]
+  },
+  "hamamatsu": {
+    "label": "浜松市",
+    "area": "静岡県",
+    "intro": "浜名区のグランピングと中央区の岩盤浴。宿泊セットと時間制の条件を比較できます。",
+    "facilities": [
+      {
+        "key": "fruitpark-glamping",
+        "scope": "city",
+        "municipality": "浜松市"
+      },
+      {
+        "key": "raku-hamamatsu",
+        "scope": "city",
+        "municipality": "浜松市"
+      }
+    ]
+  },
+  "nagoya": {
+    "label": "名古屋市",
+    "area": "愛知県",
+    "intro": "港の遊園地と東山の植物園。入園料と乗り物・駐車場の追加費用を見比べられます。",
+    "facilities": [
+      {
+        "key": "seatrainland",
+        "scope": "city",
+        "municipality": "名古屋市"
+      },
+      {
+        "key": "higashiyama-botanical",
+        "scope": "city",
+        "municipality": "名古屋市"
+      }
+    ]
+  },
+  "kyoto": {
+    "label": "京都市",
+    "area": "京都府",
+    "intro": "市内の植物園と南丹市の高原グランピング。市内観光と市外宿泊の移動を分けて計画。",
+    "facilities": [
+      {
+        "key": "grax-rurikei",
+        "scope": "nearby",
+        "municipality": "南丹市"
+      },
+      {
+        "key": "kyoto-botanical",
+        "scope": "city",
+        "municipality": "京都市"
+      }
+    ]
+  },
+  "osaka": {
+    "label": "大阪市",
+    "area": "大阪府",
+    "intro": "鶴橋の岩盤浴と新今宮の温浴施設。日帰りと長時間滞在の料金条件を確認できます。",
+    "facilities": [
+      {
+        "key": "nobeha-tsuruhashi",
+        "scope": "city",
+        "municipality": "大阪市"
+      },
+      {
+        "key": "spaworld-city",
+        "scope": "city",
+        "municipality": "大阪市"
+      }
+    ]
+  },
+  "sakai": {
+    "label": "堺市",
+    "area": "大阪府",
+    "intro": "南区の体験公園と西区の岩盤浴。施設ごとのアクセスと追加利用料を比較できます。",
+    "facilities": [
+      {
+        "key": "harvest-hill",
+        "scope": "city",
+        "municipality": "堺市"
+      },
+      {
+        "key": "syofuku-honten",
+        "scope": "city",
+        "municipality": "堺市"
+      }
+    ]
+  },
+  "kobe": {
+    "label": "神戸市",
+    "area": "兵庫県",
+    "intro": "六甲山のアスレチックと森林植物園。送迎・バスの運行日を確かめて森へ出かけられます。",
+    "facilities": [
+      {
+        "key": "forest-rokko",
+        "scope": "city",
+        "municipality": "神戸市"
+      },
+      {
+        "key": "kobe-arboretum",
+        "scope": "city",
+        "municipality": "神戸市"
+      }
+    ]
+  },
+  "okayama": {
+    "label": "岡山市",
+    "area": "岡山県",
+    "intro": "建部のキャンプと青江の岩盤浴。季節営業の屋外施設と館内滞在を比べられます。",
+    "facilities": [
+      {
+        "key": "takebe-camp",
+        "scope": "city",
+        "municipality": "岡山市"
+      },
+      {
+        "key": "pokaon-okayama",
+        "scope": "city",
+        "municipality": "岡山市"
+      }
+    ]
+  },
+  "hiroshima": {
+    "label": "広島市",
+    "area": "広島県",
+    "intro": "市内の植物観賞と、呉市の山上キャンプ。広島市外の宿泊候補は近郊として区別します。",
+    "facilities": [
+      {
+        "key": "norosan-camp",
+        "scope": "nearby",
+        "municipality": "呉市"
+      },
+      {
+        "key": "hiroshima-botanical",
+        "scope": "city",
+        "municipality": "広島市"
+      }
+    ]
+  },
+  "kitakyushu": {
+    "label": "北九州市",
+    "area": "福岡県",
+    "intro": "平尾台の体験公園と小倉の天然温泉。入園・体験・入泉の料金を分けて確認できます。",
+    "facilities": [
+      {
+        "key": "solaland-hiraodai",
+        "scope": "city",
+        "municipality": "北九州市"
+      },
+      {
+        "key": "korona-kokura",
+        "scope": "city",
+        "municipality": "北九州市"
+      }
+    ]
+  },
+  "fukuoka": {
+    "label": "福岡市",
+    "area": "福岡県",
+    "intro": "照葉の岩盤浴と博多港の温泉。入浴だけ、休憩込み、貸切などの使い方を比較できます。",
+    "facilities": [
+      {
+        "key": "teriha-fukuoka",
+        "scope": "city",
+        "municipality": "福岡市"
+      },
+      {
+        "key": "namiha",
+        "scope": "city",
+        "municipality": "福岡市"
+      }
+    ]
+  },
+  "kumamoto": {
+    "label": "熊本市",
+    "area": "熊本県",
+    "intro": "天然温泉と湧水の庭園。温浴施設の清掃時間と庭園の最終入園時刻も確認できます。",
+    "facilities": [
+      {
+        "key": "yulax-kumamoto",
+        "scope": "city",
+        "municipality": "熊本市"
+      },
+      {
+        "key": "suizenji",
+        "scope": "city",
+        "municipality": "熊本市"
+      }
+    ]
+  }
+}
