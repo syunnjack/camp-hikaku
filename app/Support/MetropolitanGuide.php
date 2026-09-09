@@ -13,6 +13,6 @@ class MetropolitanGuide
 
     public static function forSpot(Spot $spot): ?array
     {
-        return self::all()[$spot->editorial_guide ?? ''] ?? null;
+        return RegionalGuide::forSpot($spot);
     }
 }

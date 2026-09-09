@@ -156,6 +156,7 @@ jobs:
             PHP=$(command -v php8.3 || command -v php)
             $PHP artisan db:seed --class=VerifiedWellnessSeeder --force
             $PHP artisan db:seed --class=MetropolitanGuideSeeder --force
+            $PHP artisan db:seed --class=KansaiGuideSeeder --force
 
       - name: Clear route and view caches
         uses: appleboy/ssh-action@v1.0.3

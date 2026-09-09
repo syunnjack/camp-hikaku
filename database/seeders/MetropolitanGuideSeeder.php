@@ -9,10 +9,15 @@ use RuntimeException;
 
 class MetropolitanGuideSeeder extends Seeder
 {
+    protected function guides(): array
+    {
+        return MetropolitanGuide::all();
+    }
+
     public function run(): void
     {
         DB::transaction(function () {
-            foreach (MetropolitanGuide::all() as $key => $guide) {
+            foreach ($this->guides() as $key => $guide) {
                 if (DB::table('spots')->where('editorial_guide', $key)->exists()) {
                     continue;
                 }
@@ -23,6 +28,9 @@ class MetropolitanGuideSeeder extends Seeder
                     throw new RuntimeException('施設の重複候補を確認してください: '.$guide['name']);
                 }
                 if ($matches->isNotEmpty()) {
+                    if ($matches->first()->editorial_guide !== null) {
+                        throw new RuntimeException('既存の編集情報との重複を確認してください: '.$guide['name']);
+                    }
                     // Editorial metadata only: preserve visitor content and booking links.
                     DB::table('spots')->where('id', $matches->first()->id)->update(['editorial_guide' => $key]);
                     continue;
