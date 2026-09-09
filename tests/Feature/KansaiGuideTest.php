@@ -24,12 +24,12 @@ class KansaiGuideTest extends TestCase
         $count = Spot::count();
         $this->seed(KansaiGuideSeeder::class);
         $this->seed(KansaiGuideSeeder::class);
-        $this->assertSame($count + 3, Spot::count());
+        $this->assertSame($count + 8, Spot::count());
         $after = $kasagi->fresh()->getAttributes();
         unset($before['editorial_guide'], $after['editorial_guide']);
         $this->assertEquals($before, $after);
         $this->assertDatabaseCount('reviews', 1);
-        $this->assertSame(12, Spot::whereNotNull('editorial_guide')->count());
+        $this->assertSame(24, Spot::whereNotNull('editorial_guide')->count());
         foreach (['metropolitan','kansai'] as $region) {
             $catalog = RegionalGuide::all($region);
             $index = $this->get('/guides/'.$region)->assertOk()->assertSee('aria-current="page"', false);
