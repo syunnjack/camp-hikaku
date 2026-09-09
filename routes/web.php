@@ -8,6 +8,8 @@ use App\Http\Controllers\LineWebhookController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SpotController::class, 'index'])->name('spots.index');
+Route::get('/cities', [\App\Http\Controllers\CityGuideController::class, 'index'])->name('cities.index');
+Route::get('/cities/{city}', [\App\Http\Controllers\CityGuideController::class, 'show'])->name('cities.show');
 Route::get('/guides/metropolitan', [\App\Http\Controllers\MetropolitanGuideController::class, 'index'])->name('guides.metropolitan');
 Route::get('/guides/kansai', [\App\Http\Controllers\MetropolitanGuideController::class, 'index'])->defaults('region', 'kansai')->name('guides.kansai');
 Route::get('/categories/{category}', [SpotController::class, 'index'])->name('categories.show');

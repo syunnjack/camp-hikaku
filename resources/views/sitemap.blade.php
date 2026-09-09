@@ -9,6 +9,10 @@
     <priority>0.3</priority>
   </url>
   <url><loc>{{ url('/journals') }}</loc></url>
+  <url><loc>{{ route('cities.index') }}</loc><lastmod>2026-09-10</lastmod></url>
+@foreach(array_keys(\App\Support\CityGuide::cities()) as $city)
+  <url><loc>{{ route('cities.show',$city) }}</loc><lastmod>2026-09-10</lastmod></url>
+@endforeach
   <url><loc>{{ route('guides.metropolitan') }}</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>{{ route('guides.kansai') }}</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>{{ url('/guidelines') }}</loc></url>

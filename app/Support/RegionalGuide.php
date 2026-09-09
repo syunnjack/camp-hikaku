@@ -32,6 +32,11 @@ class RegionalGuide
             }
         }
 
+        $guide = CityGuide::all()[$spot->editorial_guide] ?? null;
+        if ($guide) {
+            return $guide + ['region'=>'cities', 'region_label'=>CityGuide::cities()[$guide['city']]['label']];
+        }
+
         return null;
     }
 }
