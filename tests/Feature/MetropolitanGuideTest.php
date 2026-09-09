@@ -13,7 +13,7 @@ class MetropolitanGuideTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_import_enriches_four_existing_spots_and_adds_two_without_touching_reviews(): void
+    public function test_import_enriches_existing_spots_without_touching_reviews(): void
     {
         $this->seed(VerifiedWellnessSeeder::class);
         $spot = Spot::where('name', 'スパ ラクーア')->firstOrFail();
@@ -22,22 +22,22 @@ class MetropolitanGuideTest extends TestCase
         $before = $spot->fresh()->getAttributes();
         $this->seed(MetropolitanGuideSeeder::class);
         $this->seed(MetropolitanGuideSeeder::class);
-        $this->assertDatabaseCount('spots', 157);
+        $this->assertDatabaseCount('spots', 162);
         $this->assertDatabaseCount('reviews', 1);
         $after = $spot->fresh()->getAttributes();
         unset($before['editorial_guide'], $after['editorial_guide']);
         $this->assertSame($before, $after);
-        $this->assertSame(6, Spot::whereNotNull('editorial_guide')->count());
+        $this->assertSame(12, Spot::whereNotNull('editorial_guide')->count());
     }
 
-    public function test_guide_links_to_six_rendered_details_with_matching_faq_data(): void
+    public function test_guide_links_to_all_rendered_details_with_matching_faq_data(): void
     {
         $this->seed(MetropolitanGuideSeeder::class);
-        $index = $this->get('/guides/metropolitan')->assertOk()->assertSee('初回掲載：各ジャンル1施設');
+        $index = $this->get('/guides/metropolitan')->assertOk()->assertSee('掲載12施設');
         foreach (Spot::all() as $spot) {
             $guide = MetropolitanGuide::forSpot($spot);
             $index->assertSee(route('spots.show', $spot).'#official-guide', false);
-            $page = $this->get('/spots/'.$spot->id)->assertOk()->assertSee('料金・予約・利用条件')->assertSee($guide['price'])->assertSee('2026-09-08');
+            $page = $this->get('/spots/'.$spot->id)->assertOk()->assertSee('料金・予約・利用条件')->assertSee($guide['price'])->assertSee($guide['checked_at']);
             preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $page->getContent(), $matches);
             $faqFound = false;
             foreach ($matches[1] as $json) {

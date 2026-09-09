@@ -12,20 +12,23 @@
     <p class="metro-eyebrow">{{ $metadata['eyebrow'] }}</p>
     <h1>今度の休日、<br>どんなふうに過ごす？</h1>
     <p>森に泊まる。体を動かす。お湯でひと息。<br>{{ $metadata['label'] }}の6ジャンルを、料金と利用条件から選べるガイドです。</p>
-    <p class="small">初回掲載：各ジャンル1施設・計6施設。公式情報の調査日：{{ $metadata['checked_at'] }}。現地訪問による評価・ランキングではありません。</p>
+    <p class="small">掲載{{ count($guides) }}施設。公式情報の確認日は各施設に表示しています。現地訪問による評価・ランキングではありません。</p>
   </header>
   <nav class="metro-jumps" aria-label="ジャンルを選ぶ">
-    @foreach($guides as $key=>$guide)<a href="#{{ $key }}">{{ \App\Support\Discovery::label($guide['category']) }}</a>@endforeach
+    @foreach(collect($guides)->groupBy('category') as $category=>$categoryGuides)<a href="#genre-{{ $category }}">{{ \App\Support\Discovery::label($category) }}（{{ $categoryGuides->count() }}）</a>@endforeach
   </nav>
   <section aria-labelledby="price-heading" class="mb-5">
     <h2 id="price-heading">まずは、料金の条件を見比べる</h2>
     <p>宿泊・時間制の体験・日帰り入館では含まれるものが違います。金額と利用条件を一緒に確認してください。</p>
-    <div class="metro-table-wrap" tabindex="0" role="region" aria-label="6施設の料金比較表（横にスクロールできます）"><table class="table metro-table"><thead><tr><th scope="col">施設・ジャンル</th><th scope="col">料金の目安</th><th scope="col">対象・追加費用</th></tr></thead><tbody>
+    <div class="metro-table-wrap" tabindex="0" role="region" aria-label="{{ count($guides) }}施設の料金比較表（横にスクロールできます）"><table class="table metro-table"><thead><tr><th scope="col">施設・ジャンル</th><th scope="col">料金の目安</th><th scope="col">対象・追加費用</th></tr></thead><tbody>
     @foreach($guides as $key=>$guide)<tr><th scope="row"><a href="#{{ $key }}">{{ $guide['name'] }}</a><small class="d-block">{{ \App\Support\Discovery::label($guide['category']) }} · {{ $guide['area'] }}</small></th><td>{{ $guide['price'] }}</td><td>{{ $guide['price_condition'] }}</td></tr>@endforeach
     </tbody></table></div>
   </section>
+  @foreach(collect($guides)->groupBy('category', preserveKeys: true) as $category=>$categoryGuides)
+  <section class="mb-5" aria-labelledby="genre-{{ $category }}">
+  <h2 id="genre-{{ $category }}">{{ \App\Support\Discovery::label($category) }}を比較する <small>（{{ $categoryGuides->count() }}施設）</small></h2>
   <div class="metro-grid">
-  @foreach($guides as $key=>$guide)
+  @foreach($categoryGuides as $key=>$guide)
     <article class="metro-card" id="{{ $key }}">
       <p class="metro-eyebrow">{{ \App\Support\Discovery::label($guide['category']) }} / {{ $guide['area'] }}</p>
       <h2>{{ $guide['name'] }}</h2><p>{{ $guide['summary'] }}</p>
@@ -36,10 +39,13 @@
       @else
         <a href="{{ $guide['official_url'] }}" target="_blank" rel="noopener noreferrer">公式の利用案内を見る ↗</a>
       @endif
+      <p class="small">公式情報確認：{{ $guide['checked_at'] }}</p>
       <p class="small mt-3">出典：@foreach($guide['sources'] as $source)<a href="{{ $source['url'] }}" target="_blank" rel="noopener noreferrer">{{ $source['label'] }}</a>{{ $loop->last ? '' : ' / ' }}@endforeach</p>
     </article>
   @endforeach
   </div>
+  </section>
+  @endforeach
   <aside class="metro-note"><h2>行った人にしか分からないことも。</h2><p>音、混雑、休憩席の使いやすさ、実際に払った金額。訪問した施設のページから、日時を添えて体験記を共有できます。</p><a href="{{ route('journals.index') }}">みんなの体験記を見る →</a></aside>
 </div>
 @endsection
