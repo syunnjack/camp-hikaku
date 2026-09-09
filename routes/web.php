@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SpotController::class, 'index'])->name('spots.index');
 Route::get('/guides/metropolitan', [\App\Http\Controllers\MetropolitanGuideController::class, 'index'])->name('guides.metropolitan');
+Route::get('/guides/kansai', [\App\Http\Controllers\MetropolitanGuideController::class, 'index'])->defaults('region', 'kansai')->name('guides.kansai');
 Route::get('/categories/{category}', [SpotController::class, 'index'])->name('categories.show');
 Route::get('/compare', [SpotController::class, 'compare'])->name('spots.compare');
 Route::get('/my-list', [SpotController::class, 'shortlist'])->name('spots.shortlist');

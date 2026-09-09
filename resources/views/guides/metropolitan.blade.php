@@ -1,17 +1,18 @@
 @extends('layouts.plain')
-@section('title', '首都圏で過ごす休日｜6ジャンルの料金・予約・利用条件 | '.config('app.name'))
-@section('description', '東京・神奈川・千葉・埼玉のグランピング、ソロキャンプ、アクティビティ、岩盤浴、森林セラピー、スパを公式情報で比較。料金の条件、追加費用、予約、アクセスと出典を掲載。')
+@section('title', $metadata['label'].'で過ごす休日｜6ジャンルの料金・予約・利用条件 | '.config('app.name'))
+@section('description', $metadata['areas'].'のグランピング、ソロキャンプ、アクティビティ、岩盤浴、森林セラピー、スパを公式情報で比較。料金の条件、追加費用、予約、アクセスと出典を掲載。')
 @push('structured-data')
-<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'CollectionPage','name'=>'首都圏で過ごす休日','url'=>route('guides.metropolitan'),'inLanguage'=>'ja','dateModified'=>'2026-09-09','mainEntity'=>['@type'=>'ItemList','itemListElement'=>$spots->values()->map(fn($spot,$i)=>['@type'=>'ListItem','position'=>$i+1,'url'=>route('spots.show',$spot),'name'=>$spot->name])->all()]]) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'CollectionPage','name'=>$metadata['label'].'で過ごす休日','url'=>route('guides.'.$region),'inLanguage'=>'ja','dateModified'=>$metadata['published_at'],'mainEntity'=>['@type'=>'ItemList','itemListElement'=>$spots->values()->map(fn($spot,$i)=>['@type'=>'ListItem','position'=>$i+1,'url'=>route('spots.show',$spot),'name'=>$spot->name])->all()]]) !!}</script>
 @endpush
 @section('content')
 <div class="discovery-wrap metro-guide">
-  <nav aria-label="パンくず"><a href="{{ route('spots.index') }}">施設を探す</a> / 首都圏ガイド</nav>
+  <nav aria-label="パンくず"><a href="{{ route('spots.index') }}">施設を探す</a> / {{ $metadata['label'] }}ガイド</nav>
+  <nav class="metro-jumps mt-4 mb-0" aria-label="地域ガイドの切り替え">@foreach(\App\Support\RegionalGuide::REGIONS as $regionKey=>$regionInfo)<a href="{{ route('guides.'.$regionKey) }}" @if($regionKey === $region) aria-current="page" @endif>{{ $regionInfo['label'] }}ガイド</a>@endforeach</nav>
   <header class="metro-intro">
-    <p class="metro-eyebrow">TOKYO · KANAGAWA · CHIBA · SAITAMA</p>
+    <p class="metro-eyebrow">{{ $metadata['eyebrow'] }}</p>
     <h1>今度の休日、<br>どんなふうに過ごす？</h1>
-    <p>森に泊まる。体を動かす。お湯でひと息。<br>首都圏の6ジャンルを、料金と利用条件から選べるガイドです。</p>
-    <p class="small">初回掲載：各ジャンル1施設・計6施設。公式情報の調査日：2026年9月8日。現地訪問による評価・ランキングではありません。</p>
+    <p>森に泊まる。体を動かす。お湯でひと息。<br>{{ $metadata['label'] }}の6ジャンルを、料金と利用条件から選べるガイドです。</p>
+    <p class="small">初回掲載：各ジャンル1施設・計6施設。公式情報の調査日：{{ $metadata['checked_at'] }}。現地訪問による評価・ランキングではありません。</p>
   </header>
   <nav class="metro-jumps" aria-label="ジャンルを選ぶ">
     @foreach($guides as $key=>$guide)<a href="#{{ $key }}">{{ \App\Support\Discovery::label($guide['category']) }}</a>@endforeach
