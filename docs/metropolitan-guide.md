@@ -1,0 +1,9 @@
+# Metropolitan guide
+
+The first guide covers six genres equally: THE FARM (glamping), Takizawaen (solo camping), Forest Adventure Yokohama (activity), SPAJAPO (stone bath), Kitamoto (forest-therapy tour), and LaQua (spa). Research date: 2026-09-08. Full factual data, conditional prices, FAQs, source URLs and visit prompts are stored in `app/Support/metropolitan-guide.json`.
+
+`/guides/metropolitan` provides a server-rendered comparison table and links to facility details. Individual detail pages include editorial research separately from visitor reviews; visible FAQs match FAQPage JSON-LD. No rich-result eligibility or search/AI ranking is guaranteed. The guide is linked from navigation and sitemap. SPAJAPO's base price is explicitly unverified and directs readers to the official table. Approximate coordinates, fake ratings, photos and visitor experiences are not generated.
+
+The nullable, unique `spots.editorial_guide` field links a facility to its editorial record. It is not accepted by the public submission endpoint or mass assignment. The dedicated seeder matches a known name or official URL within the verified prefecture, stops on ambiguous matches, and only attaches the editorial key to existing records. Existing descriptions, URLs, reviews, likes and timestamps remain unchanged. Missing facilities are inserted with null coordinates. Rerunning is idempotent. The deployment invokes only VerifiedWellnessSeeder and MetropolitanGuideSeeder, not the general DatabaseSeeder.
+
+Local validation: 22 tests / 1,585 assertions passed. HTTP checks confirmed the guide, all six linked details, home, stylesheet and sitemap. Desktop browser automation timed out; visual/mobile verification remains incomplete. Local Vite build encountered an environment filesystem restriction; GitHub CI must pass before merge/deployment.

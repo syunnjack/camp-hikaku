@@ -119,7 +119,9 @@ class SpotController extends Controller
             ->limit(8)
             ->get();
 
-        return view('spots.show', compact('spot', 'nearbySpots'));
+        $guide = \App\Support\MetropolitanGuide::forSpot($spot);
+
+        return view('spots.show', compact('spot', 'nearbySpots', 'guide'));
     }
 
     /**
