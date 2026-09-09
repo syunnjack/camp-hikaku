@@ -9,6 +9,7 @@
     <priority>0.3</priority>
   </url>
   <url><loc>{{ url('/journals') }}</loc></url>
+  <url><loc>{{ route('guides.metropolitan') }}</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>{{ url('/guidelines') }}</loc></url>
 @foreach(array_keys(\App\Support\Discovery::CATEGORIES) as $category)
   <url><loc>{{ route('categories.show',$category) }}</loc></url>

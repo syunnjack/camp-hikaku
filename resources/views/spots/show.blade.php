@@ -1,9 +1,12 @@
 @extends('layouts.plain')
 
-@section('title', $spot->name . ' の混雑の参考情報・口コミ | ' . config('app.name'))
-@section('description', $spot->name . '（' . ($spot->area ?? 'キャンプ場') . '）の場所・混雑の参考情報・利用者の口コミを確認できます。')
+@section('title', $spot->name . ($guide ? ' の料金・予約・利用条件・体験記 | ' : ' の混雑の参考情報・口コミ | ') . config('app.name'))
+@section('description', $guide ? $guide['summary'].'料金条件・アクセス・公式出典・利用者の体験記を確認できます。' : $spot->name . '（' . ($spot->area ?? 'キャンプ場') . '）の場所・混雑の参考情報・利用者の口コミを確認できます。')
 
 @push('structured-data')
+@if($guide)
+<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'FAQPage','url'=>route('spots.show',$spot).'#official-guide','dateModified'=>$guide['checked_at'],'mainEntity'=>array_map(fn($item)=>['@type'=>'Question','name'=>$item[0],'acceptedAnswer'=>['@type'=>'Answer','text'=>$item[1]]],$guide['questions'])]) !!}</script>
+@endif
 <script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'WebPage','name'=>$spot->name,'url'=>route('spots.show',$spot),'dateModified'=>$spot->updated_at->toAtomString(),'inLanguage'=>'ja','mainEntity'=>['@type'=>'Place','name'=>$spot->name,'url'=>route('spots.show',$spot)]]) !!}</script>
 <script type="application/ld+json">
 {!! json_encode([
@@ -63,6 +66,8 @@
           @endforeach
         </div>
       @endif
+
+      @if($guide) @include('spots.official-guide') @endif
 
       @if($spot->booking_url)
         @php
@@ -130,6 +135,7 @@
       </div>
 
       <h2 id="write-review" class="h5 mt-4 mb-2">体験記を書く</h2>
+      @if($guide)<p>{{ $guide['visit_prompt'] }}</p>@endif
       <p class="small">実際に訪問した感想を共有してください。<a href="{{ route('guidelines') }}">投稿ガイドライン</a></p>
       <form action="{{ route('spots.reviews.store', $spot) }}" method="POST" class="bg-light p-3 rounded shadow-sm">
         @csrf
