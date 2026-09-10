@@ -45,7 +45,7 @@
       @if($spot->source_urls)<details class="mb-3"><summary>施設情報の出典・確認日</summary><p class="small">{{ $spot->source_checked_at?->format('Y年m月d日') }}に公式・認定団体のページで名称・所在地・紹介内容を確認しました。営業日や料金は変更されるため、来場前に公式情報をご確認ください。</p><ul>@foreach($spot->source_urls as $sourceUrl)<li><a href="{{ $sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ $sourceUrl }}</a></li>@endforeach</ul></details>@endif
       @php
         $catalogRecord = \App\Support\CapitalFacilities::forSpot($spot);
-        $wardLocation = \App\Support\WardGuide::locate($spot->area ?? '', $spot->address ?: ($catalogRecord['address'] ?? null));
+        $wardLocation = \App\Support\WardGuide::locate($spot->area ?? '', \App\Support\WardGuide::addressForSpot($spot));
       @endphp
       @if($wardLocation)<p><a href="{{ route('wards.show',[$wardLocation['metro'],$wardLocation['ward']]) }}">{{ \App\Support\WardGuide::METROS[$wardLocation['metro']]['label'] }}・{{ $wardLocation['label'] }}の施設を探す →</a></p>@endif
       @if($catalogRecord && !$spot->source_checked_at)
