@@ -20,12 +20,12 @@ class CityGuideTest extends TestCase
     {
         $this->seed([MetropolitanGuideSeeder::class, KansaiGuideSeeder::class, CityGuideSeeder::class]);
         $this->assertDatabaseCount('spots', 59);
-        $this->assertCount(20, CityGuide::cities());
+        $this->assertCount(20, CityGuide::designatedCities());
         $index = $this->get('/cities')->assertOk()->assertSee('40施設');
         $sitemap = $this->get('/sitemap.xml')->assertOk();
         $categories = array_fill_keys(CityGuide::CATEGORIES, 0);
         $keys = [];
-        foreach (CityGuide::cities() as $slug => $city) {
+        foreach (CityGuide::designatedCities() as $slug => $city) {
             $index->assertSee(route('cities.show', $slug), false);
             $sitemap->assertSee('/cities/'.$slug);
             $guides = CityGuide::forCity($slug);

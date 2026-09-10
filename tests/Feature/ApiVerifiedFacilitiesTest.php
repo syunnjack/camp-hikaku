@@ -32,8 +32,8 @@ class ApiVerifiedFacilitiesTest extends TestCase
             $this->assertNotEmpty($spot->source_urls);
             $this->get('/spots/'.$spot->id)->assertOk()->assertSee($spot->address)->assertSee('2026年09月10日');
         }
-        foreach (array_keys(CityGuide::cities()) as $city) {
-            $response = $this->get('/cities/'.$city)->assertOk()->assertSee('市内で見つかる、ほかの施設');
+        foreach (array_keys(CityGuide::designatedCities()) as $city) {
+            $response = $this->get('/cities/'.$city)->assertOk()->assertSee('このエリアで見つかる施設');
             foreach (collect(ApiVerifiedFacilities::all())->where('city', $city) as $record) {
                 $response->assertSee($record['name']);
             }

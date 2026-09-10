@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
-const cities = JSON.parse(fs.readFileSync(root + 'app/Support/designated-cities.json', 'utf8'));
+const cities = { ...JSON.parse(fs.readFileSync(root + 'app/Support/designated-cities.json', 'utf8')), ...JSON.parse(fs.readFileSync(root + 'app/Support/prefectural-capitals.json', 'utf8')) };
 const genres = { glamping: 'グランピング', solo: 'ソロキャンプ キャンプ場', activity: 'アスレチック アクティビティ', ganbanyoku: '岩盤浴', healing: '植物園 日本庭園', spa: '日帰り温泉 スパ' };
 const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.replace(/^--/, '').split('=')));
 const offset = Number(options.offset ?? 0);

@@ -1,0 +1,595 @@
+[
+  {
+    "city": "aomori",
+    "category": "spa",
+    "name": "青森まちなかおんせん",
+    "area": "青森県",
+    "address": "青森県青森市古川1丁目10-14",
+    "official_url": "https://aomori.atinnhotels.com/onsen",
+    "description": "青森駅周辺で立ち寄れる温浴施設。宿泊者以外の日帰り利用も案内しています。入浴時間や料金は公式の温泉案内で確認できます。",
+    "source_urls": [
+      "https://aomori.atinnhotels.com/onsen"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "morioka",
+    "category": "ganbanyoku",
+    "name": "盛南温泉 開運の湯",
+    "area": "岩手県",
+    "address": "岩手県盛岡市本宮3丁目8",
+    "official_url": "https://www.kaiunnoyu.info/",
+    "description": "盛岡市本宮の温浴施設。浴場に加えてプル釜と岩盤浴を案内しています。岩盤浴ウェアを含む利用条件を確認してプランを選べます。",
+    "source_urls": [
+      "https://www.kaiunnoyu.info/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "akita",
+    "category": "activity",
+    "name": "秋田県立中央公園 フィールドアスレチック",
+    "area": "秋田県",
+    "address": "秋田県秋田市雄和椿川字駒坂台4-1",
+    "official_url": "https://www.akisouko.com/chuo/athletic.html",
+    "description": "秋田県立中央公園で体を動かして遊べるアスレチック施設。公式ページでコースの遊具や使用できない設備を確認できます。公園のアクセス図で受付位置を確認してください。",
+    "source_urls": [
+      "https://www.akisouko.com/chuo/athletic.html"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "yamagata",
+    "category": "healing",
+    "name": "山形市野草園",
+    "area": "山形県",
+    "address": "山形県山形市神尾832番地の3",
+    "official_url": "https://www.yasouen.jp/",
+    "description": "季節の草花を観察しながら散策できる野草園。公式サイトで園内の紹介と見どころの更新を確認できます。開園日や催しを調べて訪問を計画できます。",
+    "source_urls": [
+      "https://www.yasouen.jp/",
+      "https://www.yasouen.jp/guide/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "fukushima",
+    "category": "glamping",
+    "name": "FOME BASE",
+    "area": "福島県",
+    "address": "福島県福島市飯坂町茂庭中川原6",
+    "official_url": "https://www.fome-fukushima.com/",
+    "description": "飯坂町茂庭のアウトドア施設。グランピング、キャンプ、バーベキューなどを案内しています。宿泊と日帰りのプランを分けて確認できます。",
+    "source_urls": [
+      "https://www.fome-fukushima.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "mito",
+    "category": "spa",
+    "name": "SPA＆ごはん ゆるうむ",
+    "area": "茨城県",
+    "address": "茨城県水戸市小吹町2624-1",
+    "official_url": "https://yuluumu.co.jp/",
+    "description": "水戸市小吹町の温浴施設。サウナと食事を組み合わせて過ごせます。利用時間に応じた料金やメンテナンス日の案内は公式サイトをご確認ください。",
+    "source_urls": [
+      "https://yuluumu.co.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "utsunomiya",
+    "category": "solo",
+    "name": "ロッキーズ古賀志山BASE",
+    "area": "栃木県",
+    "address": "栃木県宇都宮市福岡町996",
+    "official_url": "https://www.rockys.jp/",
+    "description": "古賀志山周辺でキャンプを楽しめる施設。ソロ・デュオの利用案内があります。区画や人数に応じた料金と予約条件を公式サイトで確認してください。",
+    "source_urls": [
+      "https://www.rockys.jp/",
+      "https://www.rockys.jp/event-details/kanranseki-isutsuki-japan-cup-2025-10tsuki19nichi"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "maebashi",
+    "category": "spa",
+    "name": "あいのやまの湯",
+    "area": "群馬県",
+    "address": "群馬県前橋市荻窪町530-1",
+    "official_url": "https://ainoyamanoyu.jp/",
+    "description": "荻窪公園にある日帰り温浴施設。入浴や館内での休憩、食事を案内しています。利用料金と休館日は公式の案内で確認できます。",
+    "source_urls": [
+      "https://ainoyamanoyu.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "shinjuku",
+    "category": "ganbanyoku",
+    "name": "テルマー湯 新宿店",
+    "area": "東京都",
+    "address": "東京都新宿区歌舞伎町1丁目1-2",
+    "official_url": "https://thermae-yu.jp/",
+    "description": "新宿三丁目駅から徒歩でアクセスできる温浴施設。岩盤浴は男女別です。入館と岩盤浴の料金、清掃時間や利用条件を確認して訪問してください。",
+    "source_urls": [
+      "https://thermae-yu.jp/",
+      "https://thermae-yu.jp/faq/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "toyama",
+    "category": "healing",
+    "name": "富山県中央植物園",
+    "area": "富山県",
+    "address": "富山県富山市婦中町上轡田42",
+    "official_url": "https://www.bgtym.org/",
+    "description": "富山市婦中町の植物園。屋外の植物展示や温室を巡る散策先として探せます。季節の見どころ、開園日、入園条件を公式サイトで確認してください。",
+    "source_urls": [
+      "https://www.bgtym.org/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kanazawa",
+    "category": "spa",
+    "name": "テルメ金沢",
+    "area": "石川県",
+    "address": "石川県金沢市松島町17番地",
+    "official_url": "https://www.terume.net/",
+    "description": "金沢西インター付近の温浴・宿泊施設。入浴と食事を組み合わせて過ごせます。日帰り利用と宿泊の料金を分けて確認してください。",
+    "source_urls": [
+      "https://www.terume.net/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "fukui",
+    "category": "glamping",
+    "name": "ルポの森",
+    "area": "福井県",
+    "address": "福井県福井市市波町38-2",
+    "official_url": "https://foret-de-repos.jp/",
+    "description": "福井市の自然の中にある滞在施設。ドーム型のグランピング棟を案内しています。客室、食事、予約プランの違いを公式サイトから確認できます。",
+    "source_urls": [
+      "https://foret-de-repos.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kofu",
+    "category": "spa",
+    "name": "ヘルシーSPAサンロード",
+    "area": "山梨県",
+    "address": "山梨県甲府市大里町4144-4",
+    "official_url": "https://spasunroad.com/",
+    "description": "甲府市大里町の温浴施設。日帰りの入浴料金や館内図を公式サイトで確認できます。設備点検などの営業変更はお知らせをご確認ください。",
+    "source_urls": [
+      "https://spasunroad.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "nagano",
+    "category": "spa",
+    "name": "コトリの湯",
+    "area": "長野県",
+    "address": "長野県長野市松代町東条2832",
+    "official_url": "https://kotorinoyu.jp/",
+    "description": "松代町にある日帰り温浴施設。公式サイトで利用時間、料金、アクセスを案内しています。カーナビには別の経由地住所を指定する案内があるため、公式の道順を確認してください。",
+    "source_urls": [
+      "https://kotorinoyu.jp/",
+      "https://kotorinoyu.jp/information/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "gifu",
+    "category": "activity",
+    "name": "岐阜ファミリーパーク",
+    "area": "岐阜県",
+    "address": "岐阜県岐阜市北野北",
+    "official_url": "http://www.gifu-family-park.jp/",
+    "description": "岐阜市北部の公園。こどもゾーンの遊具とスポレクゾーンの施設を案内しています。遊具ごとの対象年齢や営業状況を確認して利用してください。",
+    "source_urls": [
+      "http://www.gifu-family-park.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tsu",
+    "category": "healing",
+    "name": "レッドヒル ヒーサーの森",
+    "area": "三重県",
+    "address": "三重県津市高野尾町2877",
+    "official_url": "https://www.redhill.co.jp/",
+    "description": "赤塚植物園グループが運営する里山庭園。樹木や季節の花々を楽しみながら歩けます。季節による開園時間や臨時休園は公式サイトで確認してください。",
+    "source_urls": [
+      "https://www.redhill.co.jp/",
+      "https://www.akatsuka.gr.jp/bosco/garden/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "otsu",
+    "category": "glamping",
+    "name": "Lakeside Resort＆Cafe AFUMI",
+    "area": "滋賀県",
+    "address": "滋賀県大津市北小松997-1",
+    "official_url": "https://www.glamping-otsu.com/",
+    "description": "琵琶湖畔のグランピング施設。ドーム型テントとカフェを案内しています。宿泊の食事付きプランや持ち込み条件を比較できます。",
+    "source_urls": [
+      "https://www.glamping-otsu.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "nara",
+    "category": "glamping",
+    "name": "GLAMPING GATE 奈良",
+    "area": "奈良県",
+    "address": "奈良県奈良市針町414-1",
+    "official_url": "https://glampinggate.com/",
+    "description": "奈良市針町にあるグランピング施設。客室タイプや宿泊プラン、アクセスを公式サイトで確認できます。奈良市中心部とは離れているため移動を含めて計画してください。",
+    "source_urls": [
+      "https://glampinggate.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "wakayama",
+    "category": "ganbanyoku",
+    "name": "天然紀州黒潮温泉",
+    "area": "和歌山県",
+    "address": "和歌山県和歌山市毛見1525",
+    "official_url": "https://www.marinacity.com/spa/",
+    "description": "和歌山マリーナシティ内の温浴施設。ねころびサウナとして岩盤浴を案内しています。岩盤浴は小学生以下は利用できず、ヨガ開催時には時間が変わる場合があります。",
+    "source_urls": [
+      "https://www.marinacity.com/spa/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tottori",
+    "category": "glamping",
+    "name": "Moi そらやま",
+    "area": "鳥取県",
+    "address": "鳥取県鳥取市広岡151 広岡農場内",
+    "official_url": "https://www.tottori-glamping.com/",
+    "description": "広岡農場の敷地内にあるグランピング施設。屋上テラス付きの客室や食事プランを案内しています。市街地からの道順と宿泊条件を公式サイトで確認できます。",
+    "source_urls": [
+      "https://www.tottori-glamping.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "matsue",
+    "category": "healing",
+    "name": "由志園",
+    "area": "島根県",
+    "address": "島根県松江市八束町波入1260-2",
+    "official_url": "https://www.yuushien.com/",
+    "description": "大根島にある日本庭園。季節の花や庭園の催しを公式サイトで案内しています。展示とイベントによって異なる入園条件を確認して訪問できます。",
+    "source_urls": [
+      "https://www.yuushien.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "yamaguchi",
+    "category": "ganbanyoku",
+    "name": "おんせんの森",
+    "area": "山口県",
+    "address": "山口県山口市湯田温泉4-7-17",
+    "official_url": "https://onsen-mori.com/",
+    "description": "湯田温泉の日帰り温浴施設。入浴に加えてスーパー岩盤浴を案内しています。料金表と館内案内で、利用したい設備の条件を確認できます。",
+    "source_urls": [
+      "https://onsen-mori.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tokushima",
+    "category": "glamping",
+    "name": "Quvel（カワウチタウン）",
+    "area": "徳島県",
+    "address": "徳島県徳島市川内町旭野169-1",
+    "official_url": "https://www.kawauchitown.com/",
+    "description": "徳島市川内町の海辺にあるアウトドア複合施設のグランピングエリア。宿泊のほか食事やバーベキューを案内しています。利用するエリアとプランを選んで予約できます。",
+    "source_urls": [
+      "https://www.kawauchitown.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "takamatsu",
+    "category": "ganbanyoku",
+    "name": "高松ぽかぽか温泉",
+    "area": "香川県",
+    "address": "香川県高松市多肥上町1515",
+    "official_url": "https://pokapoka-takamatsu.com/",
+    "description": "高松市多肥上町の温浴施設。温度の異なる岩盤浴の部屋や浴場を案内しています。入浴と岩盤浴それぞれの料金・利用条件を確認できます。",
+    "source_urls": [
+      "https://pokapoka-takamatsu.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "matsuyama",
+    "category": "healing",
+    "name": "庚申庵史跡庭園",
+    "area": "愛媛県",
+    "address": "愛媛県松山市味酒町2丁目6-7",
+    "official_url": "https://www.koushinan.jp/",
+    "description": "俳人・栗田樗堂ゆかりの草庵と庭園。市街地で藤や泉水などのある庭を散策できます。公開日と催しの予定を公式カレンダーで確認してください。",
+    "source_urls": [
+      "https://www.koushinan.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kochi",
+    "category": "ganbanyoku",
+    "name": "土佐望月温泉 姫若子の湯",
+    "area": "高知県",
+    "address": "高知県高知市海老ノ丸12-2",
+    "official_url": "https://himewako.jp/",
+    "description": "国分川沿いの日帰り温浴施設。浴場やサウナに加え、女性専用・有料の岩盤浴があります。岩盤浴の対象条件と定期休館時間を確認して訪問してください。",
+    "source_urls": [
+      "https://himewako.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "saga",
+    "category": "spa",
+    "name": "佐賀の湯処 こもれび",
+    "area": "佐賀県",
+    "address": "佐賀県佐賀市神園6丁目4-35",
+    "official_url": "https://www.komorebi.spa/",
+    "description": "佐賀市神園の日帰り温浴施設。入浴やサウナの利用案内を公式サイトで確認できます。訪問前に料金とメンテナンス日の最新情報をご確認ください。",
+    "source_urls": [
+      "https://www.komorebi.spa/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "nagasaki",
+    "category": "glamping",
+    "name": "Flat Glamping Nagasaki",
+    "area": "長崎県",
+    "address": "長崎県長崎市長浦町1812-17",
+    "official_url": "https://flat-nagasaki.com/",
+    "description": "長崎市長浦町にあるドーム型グランピング施設。宿泊プランとアクセスを公式サイトで案内しています。客室や食事内容を確認して滞在を計画できます。",
+    "source_urls": [
+      "https://flat-nagasaki.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "oita",
+    "category": "ganbanyoku",
+    "name": "CITY SPA てんくう",
+    "area": "大分県",
+    "address": "大分県大分市要町1番14号",
+    "official_url": "https://www.jroitacity.jp/contents/cityspatenku/",
+    "description": "JRおおいたシティの温浴施設。岩盤浴を含むヒーリングプランと入浴プランが分かれています。ヒーリングプランは中学生以上が対象です。",
+    "source_urls": [
+      "https://www.jroitacity.jp/contents/cityspatenku/",
+      "https://reserva.be/cityspatenku/about"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "miyazaki",
+    "category": "healing",
+    "name": "宮交ボタニックガーデン青島",
+    "area": "宮崎県",
+    "address": "宮崎県宮崎市青島2丁目12-1",
+    "official_url": "https://mppf.or.jp/aoshima/",
+    "description": "青島にある植物園。植物の展示や園内施設を巡る散策先として探せます。開園案内と季節の見どころを公式サイトで確認できます。",
+    "source_urls": [
+      "https://mppf.or.jp/aoshima/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kagoshima",
+    "category": "glamping",
+    "name": "Kagoshima Glamping YOSHIZORA",
+    "area": "鹿児島県",
+    "address": "鹿児島県鹿児島市吉野町7955",
+    "official_url": "https://yoshizora.com/",
+    "description": "鹿児島市吉野町のグランピング施設。施設紹介とアクセス案内を公式サイトで確認できます。市内からの路線バスの案内もあり、移動方法を含めて宿泊を計画できます。",
+    "source_urls": [
+      "https://yoshizora.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "naha",
+    "category": "healing",
+    "name": "福州園",
+    "area": "沖縄県",
+    "address": "沖縄県那覇市久米2丁目29-19",
+    "official_url": "https://www.fksn-okinawa.jp/",
+    "description": "那覇市と中国・福州市の友好を記念した庭園。福州式の庭を巡る散策を楽しめます。公式サイトで開園時間や入園料金を確認できます。",
+    "source_urls": [
+      "https://www.fksn-okinawa.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "otsu",
+    "category": "ganbanyoku",
+    "name": "スパリゾート雄琴 あがりゃんせ",
+    "area": "滋賀県",
+    "address": "滋賀県大津市苗鹿3丁目9-5",
+    "official_url": "https://www.agaryanse.co.jp/",
+    "description": "琵琶湖畔の温浴施設。浴場、サウナ、岩盤浴、館内の休憩設備を案内しています。隣接する宿泊施設とは利用条件を分けて確認してください。",
+    "source_urls": [
+      "https://www.agaryanse.co.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "nara",
+    "category": "solo",
+    "name": "柳生キャンプ場",
+    "area": "奈良県",
+    "address": "奈良県奈良市大柳生町2814番",
+    "official_url": "https://yg-camp.com/",
+    "description": "大柳生町のキャンプ場。ソロ用から複数人用までのレンタルテントを案内しています。利用する区画、レンタル品、営業日を確認して予約できます。",
+    "source_urls": [
+      "https://yg-camp.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tottori",
+    "category": "solo",
+    "name": "リバートリップオートキャンプ場",
+    "area": "鳥取県",
+    "address": "鳥取県鳥取市用瀬町赤波2729",
+    "official_url": "https://www.river-trip.com/",
+    "description": "用瀬町の山々に囲まれたキャンプ場。公式サイトでソロスタイル向けのサイトも紹介しています。サイトの広さや車の乗り入れ条件を確認して選べます。",
+    "source_urls": [
+      "https://www.river-trip.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tottori",
+    "category": "ganbanyoku",
+    "name": "鳥取ぽかぽか温泉",
+    "area": "鳥取県",
+    "address": "鳥取県鳥取市古海570番地",
+    "official_url": "https://tottori-pokapoka.com/",
+    "description": "鳥取市古海の日帰り温浴施設。浴場と岩盤浴を案内しています。料金変更のお知らせや年間休館日を確認して利用してください。",
+    "source_urls": [
+      "https://tottori-pokapoka.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "matsue",
+    "category": "spa",
+    "name": "玉造温泉ゆ～ゆ",
+    "area": "島根県",
+    "address": "島根県松江市玉湯町玉造255番地",
+    "official_url": "https://www.tama-yuuyu.com/",
+    "description": "玉造温泉の日帰り入浴施設。浴場などの施設案内と利用料金を公式サイトで確認できます。月曜日を基本とする休館日には祝日による変更があります。",
+    "source_urls": [
+      "https://www.tama-yuuyu.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "tokushima",
+    "category": "ganbanyoku",
+    "name": "徳島天然温泉 あらたえの湯",
+    "area": "徳島県",
+    "address": "徳島県徳島市南田宮1丁目2番8号",
+    "official_url": "https://aratae.jp/",
+    "description": "徳島市南田宮の温浴施設。温泉、サウナ、岩盤浴と食事処を案内しています。鳴門市の同系列施設とは所在地が異なるため、徳島店の利用条件をご確認ください。",
+    "source_urls": [
+      "https://aratae.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "takamatsu",
+    "category": "activity",
+    "name": "高松市峰山公園",
+    "area": "香川県",
+    "address": "香川県高松市峰山町1838-37",
+    "official_url": "https://www.mineyama-park.com/",
+    "description": "高松市街地に近い公園。アスレチックやハイキングコースを案内しています。利用したい地区と設備を公園マップで確認できます。",
+    "source_urls": [
+      "https://www.mineyama-park.com/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "matsuyama",
+    "category": "spa",
+    "name": "南道後温泉 ていれぎの湯",
+    "area": "愛媛県",
+    "address": "愛媛県松山市中野町甲853番地",
+    "official_url": "https://www.teiregi.jp/",
+    "description": "松山市中野町の日帰り温泉。浴場やサウナを案内しています。2026年9月14日は臨時休業の案内があるため、訪問前に公式のお知らせを確認してください。",
+    "source_urls": [
+      "https://www.teiregi.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kochi",
+    "category": "healing",
+    "name": "高知県立牧野植物園",
+    "area": "高知県",
+    "address": "高知県高知市五台山4200-6",
+    "official_url": "https://www.makino.or.jp/",
+    "description": "五台山にある植物園。植物の展示や園内の施設を巡れます。開園日や催し、アクセスの最新案内を確認して散策を計画できます。",
+    "source_urls": [
+      "https://www.makino.or.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "saga",
+    "category": "glamping",
+    "name": "三瀬base camp",
+    "area": "佐賀県",
+    "address": "佐賀県佐賀市三瀬村杠2234-77",
+    "official_url": "https://mitsuse.thisis-me.jp/",
+    "description": "三瀬の自然の中でグランピングやキャンプを楽しめる施設。宿泊と日帰りのプランを案内しています。市中心部から離れた立地のため、公式の道順をご確認ください。",
+    "source_urls": [
+      "https://mitsuse.thisis-me.jp/",
+      "https://mitsuse.thisis-me.jp/access/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "miyazaki",
+    "category": "activity",
+    "name": "ASOBI PARK",
+    "area": "宮崎県",
+    "address": "宮崎県宮崎市昭栄町8番",
+    "official_url": "https://asobipark.jp/",
+    "description": "宮崎市昭栄町の屋内遊び場。年齢や利用時間による料金区分があります。大人1人だけでは入場できないため、人数と対象条件を公式案内で確認してください。",
+    "source_urls": [
+      "https://asobipark.jp/",
+      "https://asobipark.jp/guidance/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "kagoshima",
+    "category": "healing",
+    "name": "仙巌園",
+    "area": "鹿児島県",
+    "address": "鹿児島県鹿児島市吉野町9700-1",
+    "official_url": "https://www.senganen.jp/",
+    "description": "鹿児島市吉野町にある庭園。園内散策と周辺施設の案内を公式サイトで確認できます。公開範囲やイベント、営業の変更を確認して訪問してください。",
+    "source_urls": [
+      "https://www.senganen.jp/"
+    ],
+    "checked_at": "2026-09-10"
+  },
+  {
+    "city": "fukushima",
+    "category": "solo",
+    "name": "かんたファーム ワイルドキャンプ場",
+    "area": "福島県",
+    "address": "福島県福島市大笹生大平63",
+    "official_url": "https://kantafarm.com/wildcamp/",
+    "description": "福島市大笹生の農園キャンプ場。ソロ向けの利用区分とサイトの案内があります。区画、人数、農園体験の有無による条件を確認して予約できます。",
+    "source_urls": [
+      "https://kantafarm.com/wildcamp/"
+    ],
+    "checked_at": "2026-09-10"
+  }
+]
