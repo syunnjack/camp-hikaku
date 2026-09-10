@@ -9,6 +9,7 @@
 <div class="discovery-wrap metro-guide">
   <nav aria-label="パンくず"><a href="{{ route('spots.index') }}">施設を探す</a> / <a href="{{ route('cities.index') }}">都市ガイド</a> / {{ $metadata['label'] }}</nav>
   <header class="metro-intro"><p class="metro-eyebrow">{{ $metadata['area'] }} · CITY GUIDE</p><h1>{{ $metadata['label'] }}から、<br>休日を選ぶ。</h1><p>{{ $metadata['intro'] }}</p><p class="small">掲載施設 {{ count($guides) + $additionalSpots->count() }}施設。公式確認日は各施設に表示しています。現地訪問による評価・ランキングではありません。</p></header>
+  @if(in_array($city,['shinjuku','osaka','nagoya']))<p><a class="discovery-button" href="{{ route('wards.index',$city==='shinjuku'?'tokyo':$city) }}">{{ $city==='shinjuku'?'東京23区':'区別' }}から施設を探す →</a></p>@endif
   <nav class="metro-jumps" aria-label="掲載ジャンル">@foreach(\App\Support\CityGuide::CATEGORIES as $category)@php($genreGuides=collect($guides)->where('category',$category))@php($count=$genreGuides->count()+$additionalSpots->where('category',$category)->count())@if($count)<a href="#{{ $genreGuides->isNotEmpty() ? $genreGuides->keys()->first() : 'more-genre-'.$category }}">{{ \App\Support\Discovery::label($category) }}（{{ $count }}）</a>@else<span>{{ \App\Support\Discovery::label($category) }}（市区内の掲載なし）</span>@endif @endforeach</nav>
   @foreach(['city'=>'市内の施設','nearby'=>'市外の近郊候補'] as $scope=>$scopeLabel)
   @php($selections=collect($guides)->where('scope',$scope))
