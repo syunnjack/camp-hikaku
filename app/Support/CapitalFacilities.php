@@ -8,4 +8,12 @@ class CapitalFacilities
     {
         return json_decode(file_get_contents(__DIR__.'/capital-facilities.json'), true, 512, JSON_THROW_ON_ERROR);
     }
+
+    public static function forSpot(object $spot): ?array
+    {
+        foreach (self::all() as $record) {
+            if (ApiVerifiedFacilities::matches($spot, $record)) { return $record; }
+        }
+        return null;
+    }
 }

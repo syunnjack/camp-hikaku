@@ -2,7 +2,7 @@
 @section('title', '全国47都道府県の県庁所在地から探す｜アウトドア・温浴・癒やしの施設 | '.config('app.name'))
 @section('description', '全国47都道府県の県庁所在地と20政令指定都市、重複を除く52エリアの施設ガイド。グランピング・ソロキャンプ・アクティビティ・岩盤浴・ヒーリング・スパを探せます。市内と近郊を区別して掲載しています。')
 @push('structured-data')
-<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'CollectionPage','name'=>'全国の県庁所在地・政令指定都市ガイド','url'=>route('cities.index'),'inLanguage'=>'ja','mainEntity'=>['@type'=>'ItemList','itemListElement'=>collect($cities)->map(fn($v,$k)=>['@type'=>'ListItem','name'=>$v['label'],'url'=>route('cities.show',$k)])->values()->map(fn($v,$i)=>$v+['position'=>$i+1])->all()]]) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'CollectionPage','name'=>'全国の県庁所在地・政令指定都市ガイド','url'=>route('cities.index'),'inLanguage'=>'ja','mainEntity'=>['@type'=>'ItemList','itemListElement'=>collect($cities)->map(fn($v,$k)=>['@type'=>'ListItem','name'=>$v['label'],'url'=>route('cities.show',$k)])->values()->map(fn($v,$i)=>$v+['position'=>$i+1])->all()]]) !!}</script>
 @endpush
 @section('content')
 <div class="discovery-wrap metro-guide">

@@ -5,7 +5,7 @@
 
 @push('structured-data')
 @if($guide)
-<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'FAQPage','url'=>route('spots.show',$spot).'#official-guide','dateModified'=>$guide['checked_at'],'mainEntity'=>array_map(fn($item)=>['@type'=>'Question','name'=>$item[0],'acceptedAnswer'=>['@type'=>'Answer','text'=>$item[1]]],$guide['questions'])]) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'FAQPage','url'=>route('spots.show',$spot).'#official-guide','dateModified'=>$guide['checked_at'],'mainEntity'=>array_map(fn($item)=>['@type'=>'Question','name'=>$item[0],'acceptedAnswer'=>['@type'=>'Answer','text'=>$item[1]]],$guide['questions'])]) !!}</script>
 @endif
 <script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'WebPage','name'=>$spot->name,'url'=>route('spots.show',$spot),'dateModified'=>$spot->updated_at->toAtomString(),'inLanguage'=>'ja','mainEntity'=>['@type'=>'Place','name'=>$spot->name,'url'=>route('spots.show',$spot)]]) !!}</script>
 <script type="application/ld+json">
@@ -43,6 +43,12 @@
       <dl class="detail-facts"><div><dt>ジャンル</dt><dd>{{ \App\Support\Discovery::label($spot->category) }}</dd></div><div><dt>公開中の体験記</dt><dd>{{ $spot->reviews->count() }}件 @if($spot->reviews->count()) · ★ {{ number_format($spot->reviews->avg('rating'),1) }} / 5 @endif</dd></div><div><dt>ページ更新日（投稿などを含む）</dt><dd><time datetime="{{ $spot->updated_at->toAtomString() }}">{{ $spot->updated_at->format('Y年m月d日') }}</time></dd></div><div><dt>公式情報の参照先</dt><dd>@if($spot->official_url)<a href="{{ $spot->official_url }}" rel="ugc nofollow noopener noreferrer" target="_blank">公式サイト ↗</a><small class="d-block">@if($spot->source_checked_at)公式情報参照：{{ $spot->source_checked_at->format('Y年m月d日') }}@else 利用者登録・運営未確認 @endif</small>@else 未登録 @endif</dd></div></dl>
       @if($spot->address)<p><strong>所在地：</strong>{{ $spot->address }}</p>@endif
       @if($spot->source_urls)<details class="mb-3"><summary>施設情報の出典・確認日</summary><p class="small">{{ $spot->source_checked_at?->format('Y年m月d日') }}に公式・認定団体のページで名称・所在地・紹介内容を確認しました。営業日や料金は変更されるため、来場前に公式情報をご確認ください。</p><ul>@foreach($spot->source_urls as $sourceUrl)<li><a href="{{ $sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ $sourceUrl }}</a></li>@endforeach</ul></details>@endif
+      @php
+        $catalogRecord = \App\Support\CapitalFacilities::forSpot($spot);
+      @endphp
+      @if($catalogRecord && !$spot->source_checked_at)
+      <section class="metro-note mb-3" aria-labelledby="catalog-official"><h2 id="catalog-official">公式情報で確認した利用案内</h2><p>{{ $catalogRecord['description'] }}</p><p><strong>所在地：</strong>{{ $catalogRecord['address'] }}</p><p class="small">確認日：{{ $catalogRecord['checked_at'] }}。利用者が登録した紹介とは別に、以下の出典で確認しています。</p><ul>@foreach($catalogRecord['source_urls'] as $sourceUrl)<li><a href="{{ $sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ $sourceUrl }}</a></li>@endforeach</ul><a href="{{ route('cities.show',$catalogRecord['city']) }}">この都市の施設を見る →</a></section>
+      @endif
       @if($spot->location_note)<p class="small text-muted">{{ $spot->location_note }}</p>@endif
       <div class="detail-actions"><button type="button" class="quiet-button" data-save-spot="{{ $spot->id }}" aria-pressed="false">♡ 行きたい</button><a href="{{ route('spots.shortlist') }}">保存した場所を見る ↗</a></div><p>@if($spot->lat !== null && $spot->lng !== null)<a href="https://www.openstreetmap.org/?mlat={{ $spot->lat }}&mlon={{ $spot->lng }}#map=14/{{ $spot->lat }}/{{ $spot->lng }}" target="_blank" rel="noopener noreferrer">地図で場所を確認 ↗</a>@elseif($spot->official_url)<a href="{{ $spot->official_url }}" target="_blank" rel="noopener noreferrer">公式案内でアクセスを確認 ↗</a>@endif　<a href="#write-review">体験記を書く ↓</a></p>
       @php
