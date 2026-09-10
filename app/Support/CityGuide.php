@@ -8,6 +8,17 @@ class CityGuide
 
     public static function cities(): array
     {
+        // Retain detailed selections in the 15 cities that belong to both lists.
+        return array_replace(self::capitals(), self::designatedCities());
+    }
+
+    public static function capitals(): array
+    {
+        return json_decode(file_get_contents(__DIR__.'/prefectural-capitals.json'), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public static function designatedCities(): array
+    {
         return json_decode(file_get_contents(__DIR__.'/designated-cities.json'), true, 512, JSON_THROW_ON_ERROR);
     }
 

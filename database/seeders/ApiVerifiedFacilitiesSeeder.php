@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class ApiVerifiedFacilitiesSeeder extends Seeder
 {
+    protected function records(): array
+    {
+        return ApiVerifiedFacilities::all();
+    }
+
     public function run(): void
     {
         $added = 0;
         DB::transaction(function () use (&$added) {
             $existing = DB::table('spots')->get();
-            foreach (ApiVerifiedFacilities::all() as $record) {
+            foreach ($this->records() as $record) {
                 $matches = $existing->filter(fn ($spot) => ApiVerifiedFacilities::matches($spot, $record));
                 if ($matches->count() > 1) {
                     throw new \RuntimeException('重複候補を確認してください: '.$record['name']);
