@@ -36,7 +36,7 @@
   </style>
   @yield('styles')
   <link rel="stylesheet" href="{{ asset('discovery.css') }}">
-  @if(request()->hasAny(['q','area','tag','sort','ids','verified']) || request()->routeIs('spots.compare','spots.create','spots.shortlist'))
+  @if(($noindex ?? false) || request()->hasAny(['q','area','tag','sort','ids','verified']) || request()->routeIs('spots.compare','spots.create','spots.shortlist'))
   <meta name="robots" content="noindex,follow">
   @endif
 

@@ -13,6 +13,12 @@
 @foreach(array_keys(\App\Support\CityGuide::cities()) as $city)
   <url><loc>{{ route('cities.show',$city) }}</loc><lastmod>2026-09-10</lastmod></url>
 @endforeach
+@foreach(\App\Support\WardGuide::METROS as $metro=>$info)
+  <url><loc>{{ route('wards.index',$metro) }}</loc></url>
+@endforeach
+@foreach(\App\Support\WardGuide::groups() as $wardPath=>$wardSpots)
+  <url><loc>{{ url('/wards/'.$wardPath) }}</loc></url>
+@endforeach
   <url><loc>{{ route('guides.metropolitan') }}</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>{{ route('guides.kansai') }}</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>{{ url('/guidelines') }}</loc></url>

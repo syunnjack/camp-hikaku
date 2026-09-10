@@ -38,3 +38,6 @@ Route::post('/spots/{spot}/favorite', [FavoriteController::class, 'toggle'])
     ->name('spots.favorite.toggle')
     ->middleware('throttle:10,1');
 Route::post('/line/webhook', [LineWebhookController::class, 'handle'])->name('line.webhook');
+
+Route::get('/wards/{metro}', [\App\Http\Controllers\WardGuideController::class, 'index'])->name('wards.index');
+Route::get('/wards/{metro}/{ward}', [\App\Http\Controllers\WardGuideController::class, 'show'])->name('wards.show');
