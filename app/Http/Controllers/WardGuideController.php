@@ -7,6 +7,17 @@ use App\Support\WardGuide;
 
 class WardGuideController extends Controller
 {
+    public function national()
+    {
+        $metros = ['tokyo'=>WardGuide::METROS['tokyo']];
+        foreach (array_keys(\App\Support\CityGuide::designatedCities()) as $city) {
+            $metros[$city] = WardGuide::METROS[$city];
+        }
+        $groups = WardGuide::groups();
+        $counts = collect($metros)->mapWithKeys(fn ($info,$metro)=>[$metro=>$groups->filter(fn ($spots,$key)=>str_starts_with($key,$metro.'/'))->sum(fn($spots)=>$spots->count())]);
+        return view('wards.national', compact('metros','counts'));
+    }
+
     public function index(string $metro)
     {
         $metadata = WardGuide::METROS[$metro] ?? null;

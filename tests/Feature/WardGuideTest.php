@@ -11,12 +11,19 @@ class WardGuideTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_all_63_wards_have_routes_and_empty_pages_are_honest_and_noindex(): void
+    public function test_all_194_wards_have_routes_and_empty_pages_are_honest_and_noindex(): void
     {
-        $this->assertSame([23,24,16], array_map(fn($metro)=>count(WardGuide::wards($metro)), array_keys(WardGuide::METROS)));
+        $this->assertCount(21, WardGuide::METROS);
+        $national = $this->get('/wards')->assertOk()->assertSee('全国194区');
+        $this->assertSame(194, array_sum(array_map(fn($metro)=>count(WardGuide::wards($metro)), array_keys(WardGuide::METROS))));
+        foreach (array_keys(\App\Support\CityGuide::designatedCities()) as $city) {
+            $this->assertArrayHasKey($city, WardGuide::METROS);
+            $this->get('/cities/'.$city)->assertOk()->assertSee(route('wards.index',$city), false);
+        }
         $sitemap = $this->get('/sitemap.xml')->assertOk();
         foreach (WardGuide::METROS as $metro=>$info) {
             $index = $this->get('/wards/'.$metro)->assertOk();
+            $national->assertSee(route('wards.index',$metro),false);
             $sitemap->assertSee(route('wards.index',$metro), false);
             foreach (WardGuide::wards($metro) as $ward=>$label) {
                 $index->assertSee(route('wards.show',[$metro,$ward]), false)->assertSee($label);
@@ -26,7 +33,7 @@ class WardGuideTest extends TestCase
                 foreach ($schemas[1] as $json) { $this->assertSame('https://schema.org', json_decode($json,true,512,JSON_THROW_ON_ERROR)['@context']); }
             }
         }
-        foreach (['/wards/kyoto','/wards/osaka/shinjuku','/wards/nagoya/naniwa','/wards/tokyo/unknown'] as $path) { $this->get($path)->assertNotFound(); }
+        foreach (['/wards/not-a-city','/wards/osaka/shinjuku','/wards/nagoya/naniwa','/wards/tokyo/unknown'] as $path) { $this->get($path)->assertNotFound(); }
         $this->get('/cities')->assertOk()->assertSee('/wards/tokyo')->assertSee('/wards/osaka')->assertSee('/wards/nagoya');
     }
 
@@ -61,5 +68,22 @@ class WardGuideTest extends TestCase
         $this->assertSame(['metro'=>'nagoya','ward'=>'nakagawa','label'=>'中川区'],WardGuide::locate('愛知県','愛知県名古屋市中川区1'));
         $this->assertSame(['metro'=>'osaka','ward'=>'higashisumiyoshi','label'=>'東住吉区'],WardGuide::locate('大阪府','大阪市東住吉区1'));
         $this->assertNull(WardGuide::locate('東京都','東京都八王子市港区という施設名'));
+    }
+
+    public function test_current_hamamatsu_wards_and_editorial_address_fallback_preserve_stored_records(): void
+    {
+        $this->assertSame(['chuo'=>'中央区','hamana'=>'浜名区','tenryu'=>'天竜区'], WardGuide::wards('hamamatsu'));
+        $this->assertNull(WardGuide::locate('静岡県','浜松市北区三方原町1'));
+        $this->assertSame('chuo', WardGuide::locate('静岡県','浜松市中央区三方原町1')['ward']);
+        $this->assertSame('hamana', WardGuide::locate('静岡県','浜松市浜名区細江町1')['ward']);
+        $this->assertSame('shimizu', WardGuide::locate('静岡県','静岡市清水区1')['ward']);
+        $this->assertSame('saiwai', WardGuide::locate('神奈川県','川崎市幸区1')['ward']);
+        $this->assertSame('midori', WardGuide::locate('神奈川県','相模原市緑区1')['ward']);
+        $spot = $this->makeSpot(['name'=>'既存の紹介を保持する施設','area'=>'北海道','category'=>'glamping','description'=>'利用者が登録した紹介','editorial_guide'=>'quope']);
+        $before = $spot->fresh()->getAttributes();
+        $this->get('/wards/sapporo/nishi')->assertOk()->assertSee($spot->name)->assertSee('北海道札幌市西区小別沢49');
+        $this->get('/spots/'.$spot->id)->assertOk()->assertSee('/wards/sapporo/nishi');
+        $this->assertSame($before,$spot->fresh()->getAttributes());
+        $this->get('/wards/hamamatsu/kita')->assertNotFound();
     }
 }

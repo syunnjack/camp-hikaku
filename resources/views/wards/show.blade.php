@@ -7,7 +7,7 @@
 @endpush
 @section('content')
 <div class="discovery-wrap metro-guide">
-  <nav aria-label="パンくず"><a href="{{ route('cities.index') }}">都市ガイド</a> / <a href="{{ route('wards.index',$metro) }}">{{ $metadata['label'] }}の区</a> / {{ $label }}</nav>
+  <nav aria-label="パンくず"><a href="{{ route('wards.national') }}">全国の区</a> / <a href="{{ route('wards.index',$metro) }}">{{ $metadata['label'] }}の区</a> / {{ $label }}</nav>
   <header class="metro-intro"><p class="metro-eyebrow">{{ $metadata['label'] }} · NEIGHBORHOOD</p><h1>{{ $label }}で、<br>次の休日を。</h1><p>{{ $metadata['label'] }}・{{ $label }}の掲載施設 {{ $spots->count() }}件。施設ごとの利用条件や公式情報の確認状況は詳細ページでご覧いただけます。</p></header>
   <nav class="metro-jumps" aria-label="掲載ジャンル">@foreach($categories as $category=>$info)@php($count=$spots->filter(fn($spot)=>($spot->category ?: 'campground')===$category)->count())@if($count)<a href="#genre-{{ $category }}">{{ $info['label'] }} {{ $count }}件</a>@else<span>{{ $info['label'] }} 0件</span>@endif @endforeach</nav>
   @forelse($spots->groupBy(fn($spot)=>$spot->category ?: 'campground') as $category=>$genreSpots)
