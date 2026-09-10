@@ -2,7 +2,7 @@
 @section('title', $metadata['label'].'で過ごす休日｜6ジャンルの料金・予約・利用条件 | '.config('app.name'))
 @section('description', $metadata['areas'].'のグランピング、ソロキャンプ、アクティビティ、岩盤浴、森林セラピー、スパを公式情報で比較。料金の条件、追加費用、予約、アクセスと出典を掲載。')
 @push('structured-data')
-<script type="application/ld+json">{!! \App\Support\Discovery::json(['@context'=>'https://schema.org','@type'=>'CollectionPage','name'=>$metadata['label'].'で過ごす休日','url'=>route('guides.'.$region),'inLanguage'=>'ja','dateModified'=>$metadata['published_at'],'mainEntity'=>['@type'=>'ItemList','itemListElement'=>$spots->values()->map(fn($spot,$i)=>['@type'=>'ListItem','position'=>$i+1,'url'=>route('spots.show',$spot),'name'=>$spot->name])->all()]]) !!}</script>
+<script type="application/ld+json">{!! \App\Support\Discovery::json(['@'.'context'=>'https://schema.org','@type'=>'CollectionPage','name'=>$metadata['label'].'で過ごす休日','url'=>route('guides.'.$region),'inLanguage'=>'ja','dateModified'=>$metadata['published_at'],'mainEntity'=>['@type'=>'ItemList','itemListElement'=>$spots->values()->map(fn($spot,$i)=>['@type'=>'ListItem','position'=>$i+1,'url'=>route('spots.show',$spot),'name'=>$spot->name])->all()]]) !!}</script>
 @endpush
 @section('content')
 <div class="discovery-wrap metro-guide">

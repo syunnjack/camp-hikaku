@@ -34,6 +34,16 @@ class CapitalFacilitiesTest extends TestCase
             $this->assertSame($metadata, CityGuide::cities()[$slug]);
         }
         $index = $this->get('/cities')->assertOk()->assertSee('52エリア')->assertSee('新宿区');
+        $guideSpot = Spot::whereNotNull('editorial_guide')->firstOrFail();
+        foreach (['/cities', '/guides/metropolitan', '/guides/kansai', '/spots/'.$guideSpot->id] as $path) {
+            $markup = $this->get($path)->assertOk()->getContent();
+            preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $markup, $blocks);
+            $this->assertNotEmpty($blocks[1]);
+            foreach ($blocks[1] as $json) {
+                $this->assertSame('https://schema.org', json_decode($json, true, 512, JSON_THROW_ON_ERROR)['@context'] ?? null);
+                $this->assertStringNotContainsString('<?php', $json);
+            }
+        }
         $sitemap = $this->get('/sitemap.xml')->assertOk();
         $total = 0;
         foreach (CityGuide::cities() as $slug => $metadata) {
@@ -42,6 +52,9 @@ class CapitalFacilitiesTest extends TestCase
             $page = $this->get('/cities/'.$slug)->assertOk()->assertSee($metadata['label'].'から、');
             preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $page->getContent(), $schemas);
             $schema = collect($schemas[1])->map(fn ($s) => json_decode($s, true, 512, JSON_THROW_ON_ERROR))->firstWhere('@type', 'CollectionPage');
+            foreach ($schemas[1] as $json) {
+                $this->assertSame('https://schema.org', json_decode($json, true)['@context'] ?? null);
+            }
             $items = $schema['mainEntity']['itemListElement'];
             $this->assertNotEmpty($items, $slug);
             $this->assertCount(count($items), array_unique(array_column($items, 'url')));
@@ -85,6 +98,7 @@ class CapitalFacilitiesTest extends TestCase
         $this->assertDatabaseCount('spots', count(CapitalFacilities::all()));
         $this->assertDatabaseCount('reviews', 1);
         $this->get('/cities/'.$first['city'])->assertOk()->assertSee('利用者が登録した名称');
+        $this->get('/spots/'.$spot->id)->assertOk()->assertSee('公式情報で確認した利用案内')->assertSee($first['address'])->assertSee($first['description'])->assertSee('残す紹介');
     }
 
     public function test_catalog_merges_with_the_existing_national_wellness_catalog_without_duplicates(): void
